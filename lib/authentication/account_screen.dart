@@ -34,17 +34,74 @@ class AccountScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).secondaryHeaderColor,
         elevation: 0,
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: Sizes.size40),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: Sizes.size40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gaps.v20,
-            Text(
-              "Create your account",
+            const Text(
+              "Create your Account",
               style: TextStyle(
                 fontSize: Sizes.size28 + 2,
                 fontWeight: FontWeight.w800,
+              ),
+            ),
+            Gaps.v44,
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Name',
+                hintStyle: const TextStyle(
+                  fontSize: Sizes.size16 + 2,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+              ),
+            ),
+            Gaps.v40,
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Phone Number or Email Address',
+                hintStyle: const TextStyle(
+                  fontSize: Sizes.size16 + 2,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+              ),
+            ),
+            Gaps.v40,
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Date of birth',
+                hintStyle: const TextStyle(
+                  fontSize: Sizes.size16 + 2,
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                  ),
+                ),
               ),
             ),
           ],
