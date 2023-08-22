@@ -5,6 +5,10 @@ import 'package:twitter_clone/constants/sizes.dart';
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
 
+  void onInitialTap(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +21,7 @@ class AccountScreen extends StatelessWidget {
         ),
         leadingWidth: 90,
         leading: TextButton(
-          onPressed: () {},
+          onPressed: () => onInitialTap(context),
           child: const Text(
             'Cancel',
             style: TextStyle(
