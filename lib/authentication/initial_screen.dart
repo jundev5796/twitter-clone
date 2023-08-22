@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:twitter_clone/authentication/widgets/auth_button.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
@@ -16,7 +17,7 @@ class InitialScreen extends StatelessWidget {
           child: Column(
             children: [
               Gaps.v20,
-              Icon(
+              FaIcon(
                 FontAwesomeIcons.twitter,
                 color: Color(0xFF4E98E9),
                 size: Sizes.size20 + 10,
@@ -30,6 +31,37 @@ class InitialScreen extends StatelessWidget {
                   fontWeight: FontWeight.w800,
                 ),
                 textAlign: TextAlign.center,
+              ),
+              Gaps.v40,
+              AuthButton(
+                  icon: FaIcon(FontAwesomeIcons.google),
+                  text: "Continue with Google"),
+              Gaps.v16,
+              AuthButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.apple,
+                  ),
+                  text: "Continue with Apple"),
+              Gaps.v14,
+              Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Colors.black,
+                      height: 30, // This affects the spacing around the divider
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text("or"),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Colors.black,
+                      height: 30, // This affects the spacing around the divider
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
