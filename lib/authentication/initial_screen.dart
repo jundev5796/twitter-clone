@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:twitter_clone/authentication/account_screen.dart';
 import 'package:twitter_clone/authentication/widgets/auth_button.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
 class InitialScreen extends StatelessWidget {
   const InitialScreen({super.key});
+
+  void _onAccountTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const AccountScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,19 +96,22 @@ class InitialScreen extends StatelessWidget {
                       width: Sizes.size2,
                     ),
                   ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Gaps.h16,
-                      Text(
-                        'Create account',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: Sizes.size16 + 3,
-                          fontWeight: FontWeight.w700,
+                  child: GestureDetector(
+                    onTap: () => _onAccountTap(context),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Gaps.h16,
+                        Text(
+                          'Create account',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: Sizes.size16 + 3,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
