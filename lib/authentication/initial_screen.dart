@@ -125,13 +125,33 @@ class InitialScreen extends StatelessWidget {
                               fontSize: Sizes.size16 + 1,
                             ), // Adjust the color as needed
                           ),
-                          const TextSpan(text: ',\n'),
+                          TextSpan(
+                            text: ',',
+                            style: TextStyle(
+                              color: Colors.grey.shade700,
+                              fontSize: Sizes.size16 + 1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Gaps.v4,
+              FractionallySizedBox(
+                child: Row(
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        style: const TextStyle(), // default text style
+                        children: <TextSpan>[
                           const TextSpan(
                             text: 'Privacy Policy',
                             style: TextStyle(
                               color: Colors.blue,
                               fontSize: Sizes.size16 + 1,
-                            ), // Adjust the color as needed
+                            ),
                           ),
                           TextSpan(
                             text: ', and ',
@@ -141,15 +161,22 @@ class InitialScreen extends StatelessWidget {
                             ),
                           ),
                           const TextSpan(
-                            text: 'Cookie Use.',
+                            text: 'Cookie Use',
                             style: TextStyle(
                               color: Colors.blue,
                               fontSize: Sizes.size16 + 1,
                             ), // Adjust the color as needed
                           ),
+                          TextSpan(
+                            text: '.',
+                            style: TextStyle(
+                              color: Colors.grey.shade700,
+                              fontSize: Sizes.size16 + 1,
+                            ),
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
