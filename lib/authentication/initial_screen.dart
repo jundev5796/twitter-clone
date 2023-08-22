@@ -83,21 +83,21 @@ class InitialScreen extends StatelessWidget {
               ),
               FractionallySizedBox(
                 widthFactor: 1,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: Sizes.size16,
-                    horizontal: Sizes.size10,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF101318),
-                    borderRadius: BorderRadius.circular(27),
-                    border: Border.all(
-                      color: Colors.grey.shade300,
-                      width: Sizes.size2,
+                child: GestureDetector(
+                  onTap: () => _onAccountTap(context),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: Sizes.size16,
+                      horizontal: Sizes.size10,
                     ),
-                  ),
-                  child: GestureDetector(
-                    onTap: () => _onAccountTap(context),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF101318),
+                      borderRadius: BorderRadius.circular(27),
+                      border: Border.all(
+                        color: Colors.grey.shade300,
+                        width: Sizes.size2,
+                      ),
+                    ),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
