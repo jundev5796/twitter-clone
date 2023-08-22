@@ -19,7 +19,7 @@ class AuthButton extends StatelessWidget {
       widthFactor: 1,
       child: Container(
         padding: const EdgeInsets.symmetric(
-          vertical: Sizes.size14,
+          vertical: Sizes.size16,
           horizontal: Sizes.size10,
         ),
         decoration: BoxDecoration(
