@@ -15,6 +15,7 @@ class TwitterApp extends StatelessWidget {
       title: 'Twitter Clone',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        secondaryHeaderColor: Colors.white,
       ),
       home: const InitialScreen(),
     );

@@ -8,8 +8,9 @@ class InitialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
+    return Scaffold(
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
+      body: const SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: Sizes.size40),
           child: Column(
@@ -20,7 +21,7 @@ class InitialScreen extends StatelessWidget {
                 color: Color(0xFF4E98E9),
                 size: Sizes.size20 + 10,
               ),
-              Gaps.v80,
+              Gaps.v96,
               Text(
                 "See what's happening in the world right now.",
                 style: TextStyle(
@@ -29,6 +30,35 @@ class InitialScreen extends StatelessWidget {
                   fontWeight: FontWeight.w800,
                 ),
                 textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: Sizes.size16 + 1,
+            horizontal: Sizes.size40,
+          ),
+          child: Row(
+            children: [
+              Text(
+                'Have an account already?',
+                style: TextStyle(
+                  color: Colors.grey.shade700,
+                  fontSize: Sizes.size10 + 5,
+                ),
+              ),
+              Gaps.h5,
+              Text(
+                'Log in',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: Sizes.size10 + 5,
+                ),
               ),
             ],
           ),
