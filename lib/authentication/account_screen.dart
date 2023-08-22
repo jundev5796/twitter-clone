@@ -88,7 +88,7 @@ class AccountScreen extends StatelessWidget {
             Gaps.v40,
             TextField(
               decoration: InputDecoration(
-                hintText: 'Date of birth',
+                hintText: 'Date of Birth',
                 hintStyle: const TextStyle(
                   fontSize: Sizes.size16 + 2,
                 ),
@@ -101,6 +101,31 @@ class AccountScreen extends StatelessWidget {
                   borderSide: BorderSide(
                     color: Colors.grey.shade400,
                   ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 400,
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: Sizes.size10,
+                  horizontal: Sizes.size20,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.grey,
+                ),
+                child: const Text(
+                  'Next',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 229, 226, 226),
+                    // color: Color(0xFFBFC3C6),
+                    fontSize: Sizes.size16 + 2,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
