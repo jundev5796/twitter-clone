@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/authentication/experience_screen.dart';
@@ -17,9 +18,10 @@ class _AccountScreenState extends State<AccountScreen> {
   final TextEditingController _birthdayController = TextEditingController();
   String _name = "";
   String _email = "";
-  final String _birthday = "";
+  String _birthday = "";
+  bool _showDatePicker = false;
 
-  DateTime date = DateTime.now();
+  DateTime initialDate = DateTime.now();
 
   @override
   void initState() {
@@ -36,8 +38,7 @@ class _AccountScreenState extends State<AccountScreen> {
       });
     });
 
-    final textDate = date.toString().split(" ").first;
-    _birthdayController.value = TextEditingValue(text: textDate);
+    _setTextFieldDate(initialDate);
   }
 
   @override
@@ -75,7 +76,7 @@ class _AccountScreenState extends State<AccountScreen> {
   void _onSubmit() {
     if (_name.isEmpty ||
         _email.isEmpty ||
-        _isEmailValid() ||
+        !_isEmailValid() || // Changed this condition
         _birthday.isEmpty) {
       return;
     }
@@ -85,6 +86,20 @@ class _AccountScreenState extends State<AccountScreen> {
         builder: (context) => const ExperienceScreen(),
       ),
     );
+  }
+
+  void _setTextFieldDate(DateTime date) {
+    final textDate = date.toString().split(" ").first;
+    _birthdayController.value = TextEditingValue(text: textDate);
+    setState(() {
+      _birthday = textDate;
+    });
+  }
+
+  void _toggleDatePicker() {
+    setState(() {
+      _showDatePicker = !_showDatePicker;
+    });
   }
 
   @override
@@ -209,42 +224,49 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                 ),
                 Gaps.v40,
-                TextField(
-                  enabled: false,
-                  controller: _birthdayController,
-                  keyboardType: TextInputType.emailAddress,
-                  onEditingComplete: _onSubmit,
-                  autocorrect: false,
-                  style: const TextStyle(
-                    color: Colors.blue,
-                  ),
-                  decoration: InputDecoration(
-                    suffixIcon: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Gaps.h20,
-                        FaIcon(
-                          FontAwesomeIcons.circleCheck,
-                          color: _birthday.isEmpty
-                              ? Colors.grey.shade400
-                              : const Color(
-                                  0xFF54B882,
-                                ),
-                        ),
-                      ],
+                GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context)
+                        .unfocus(); // Hide the keyboard if it's open
+                    _toggleDatePicker();
+                  },
+                  child: TextField(
+                    enabled: false,
+                    controller: _birthdayController,
+                    keyboardType: TextInputType.emailAddress,
+                    onEditingComplete: _onSubmit,
+                    autocorrect: false,
+                    style: const TextStyle(
+                      color: Colors.blue,
                     ),
-                    hintText: 'Date of Birth',
-                    hintStyle: const TextStyle(
-                      fontSize: Sizes.size16 + 2,
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey.shade400,
+                    decoration: InputDecoration(
+                      suffixIcon: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Gaps.h20,
+                          FaIcon(
+                            FontAwesomeIcons.circleCheck,
+                            color: _birthday.isEmpty
+                                ? Colors.grey.shade400
+                                : const Color(
+                                    0xFF54B882,
+                                  ),
+                          ),
+                        ],
                       ),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey.shade400,
+                      hintText: 'Date of Birth',
+                      hintStyle: const TextStyle(
+                        fontSize: Sizes.size16 + 2,
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey.shade400,
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey.shade400,
+                        ),
                       ),
                     ),
                   ),
@@ -297,6 +319,19 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
           ),
         ),
+        bottomNavigationBar: _showDatePicker
+            ? BottomAppBar(
+                child: SizedBox(
+                  height: 300,
+                  child: CupertinoDatePicker(
+                    maximumDate: initialDate,
+                    initialDateTime: initialDate,
+                    mode: CupertinoDatePickerMode.date,
+                    onDateTimeChanged: _setTextFieldDate,
+                  ),
+                ),
+              )
+            : null,
       ),
     );
   }
