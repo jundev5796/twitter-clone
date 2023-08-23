@@ -62,14 +62,11 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
-  String? _isEmailValid() {
-    if (_email.isEmpty) return null;
+  bool _isEmailValid() {
+    if (_email.isEmpty) return false;
     final regExp = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    if (!regExp.hasMatch(_email)) {
-      return "Email not valid";
-    }
-    return null;
+    return regExp.hasMatch(_email);
   }
 
   void _onScaffoldTap() {
@@ -79,8 +76,10 @@ class _AccountScreenState extends State<AccountScreen> {
   void _onSubmit() {
     if (_name.isEmpty ||
         _email.isEmpty ||
-        _isEmailValid() != null ||
-        _birthday.isEmpty) return;
+        _isEmailValid() ||
+        _birthday.isEmpty) {
+      return;
+    }
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -140,6 +139,20 @@ class _AccountScreenState extends State<AccountScreen> {
                     color: Colors.blue,
                   ),
                   decoration: InputDecoration(
+                    suffixIcon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Gaps.h20,
+                        FaIcon(
+                          FontAwesomeIcons.circleCheck,
+                          color: _name.isEmpty
+                              ? Colors.grey.shade400
+                              : const Color(
+                                  0xFF54B882,
+                                ),
+                        ),
+                      ],
+                    ),
                     hintText: 'Name',
                     hintStyle: const TextStyle(
                       fontSize: Sizes.size16 + 2,
@@ -166,6 +179,20 @@ class _AccountScreenState extends State<AccountScreen> {
                     color: Colors.blue,
                   ),
                   decoration: InputDecoration(
+                    suffixIcon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Gaps.h20,
+                        FaIcon(
+                          FontAwesomeIcons.circleCheck,
+                          color: _email.isEmpty || !_isEmailValid()
+                              ? Colors.grey.shade400
+                              : const Color(
+                                  0xFF54B882,
+                                ),
+                        ),
+                      ],
+                    ),
                     hintText: 'Email Address',
                     hintStyle: const TextStyle(
                       fontSize: Sizes.size16 + 2,
@@ -192,6 +219,20 @@ class _AccountScreenState extends State<AccountScreen> {
                     color: Colors.blue,
                   ),
                   decoration: InputDecoration(
+                    suffixIcon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Gaps.h20,
+                        FaIcon(
+                          FontAwesomeIcons.circleCheck,
+                          color: _birthday.isEmpty
+                              ? Colors.grey.shade400
+                              : const Color(
+                                  0xFF54B882,
+                                ),
+                        ),
+                      ],
+                    ),
                     hintText: 'Date of Birth',
                     hintStyle: const TextStyle(
                       fontSize: Sizes.size16 + 2,
@@ -224,22 +265,23 @@ class _AccountScreenState extends State<AccountScreen> {
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: _name.isEmpty ||
-                                  _email.isEmpty ||
-                                  _isEmailValid() != null ||
-                                  _birthday.isEmpty
-                              ? Colors.grey
-                              : const Color(0xFF101318),
+                          color: _name.isNotEmpty &&
+                                  _email.isNotEmpty &&
+                                  _isEmailValid() &&
+                                  _birthday.isNotEmpty
+                              ? const Color(0xFF101318)
+                              : Colors.grey,
                         ),
                         duration: const Duration(milliseconds: 500),
                         child: AnimatedDefaultTextStyle(
                           duration: const Duration(milliseconds: 00),
                           style: TextStyle(
-                            color: _name.isEmpty ||
-                                    _email.isEmpty ||
-                                    _birthday.isEmpty
-                                ? const Color.fromARGB(255, 229, 226, 226)
-                                : Colors.white,
+                            color: _name.isNotEmpty &&
+                                    _email.isNotEmpty &&
+                                    _isEmailValid() &&
+                                    _birthday.isNotEmpty
+                                ? Colors.white
+                                : const Color.fromARGB(255, 229, 226, 226),
                             fontSize: Sizes.size16 + 2,
                           ),
                           child: const Text(
