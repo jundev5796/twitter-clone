@@ -17,7 +17,9 @@ class _AccountScreenState extends State<AccountScreen> {
   final TextEditingController _birthdayController = TextEditingController();
   String _name = "";
   String _email = "";
-  String _birthday = "";
+  final String _birthday = "";
+
+  DateTime date = DateTime.now();
 
   @override
   void initState() {
@@ -34,11 +36,8 @@ class _AccountScreenState extends State<AccountScreen> {
       });
     });
 
-    _birthdayController.addListener(() {
-      setState(() {
-        _birthday = _birthdayController.text;
-      });
-    });
+    final textDate = date.toString().split(" ").first;
+    _birthdayController.value = TextEditingValue(text: textDate);
   }
 
   @override
@@ -211,6 +210,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 Gaps.v40,
                 TextField(
+                  enabled: false,
                   controller: _birthdayController,
                   keyboardType: TextInputType.emailAddress,
                   onEditingComplete: _onSubmit,
