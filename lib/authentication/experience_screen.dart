@@ -5,7 +5,16 @@ import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
 class ExperienceScreen extends StatefulWidget {
-  const ExperienceScreen({super.key});
+  final String name;
+  final String email;
+  final String birthday;
+
+  const ExperienceScreen({
+    super.key,
+    required this.name,
+    required this.email,
+    required this.birthday,
+  });
 
   @override
   _ExperienceScreenState createState() => _ExperienceScreenState();
@@ -21,7 +30,11 @@ class _ExperienceScreenState extends State<ExperienceScreen> {
   void _onCreatedAccountTap(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const CreatedAccountScreen(),
+        builder: (context) => CreatedAccountScreen(
+          name: widget.name,
+          email: widget.email,
+          birthday: widget.birthday,
+        ),
       ),
     );
   }
@@ -38,13 +51,14 @@ class _ExperienceScreenState extends State<ExperienceScreen> {
           size: Sizes.size20 + 10,
         ),
         leadingWidth: 100,
-        leading: TextButton(
+        leading: IconButton(
           onPressed: () => onInitialTap(context),
-          child: const Text(
-            'Cancel',
-            style: TextStyle(
+          icon: const Padding(
+            padding:
+                EdgeInsets.only(right: 40), // Adjust this value to your needs
+            child: FaIcon(
+              FontAwesomeIcons.arrowLeft,
               color: Color(0xFF101318),
-              fontSize: Sizes.size16 + 2,
             ),
           ),
         ),
@@ -258,30 +272,45 @@ class _ExperienceScreenState extends State<ExperienceScreen> {
             FractionallySizedBox(
               widthFactor: 1,
               child: GestureDetector(
-                onTap: () => _onCreatedAccountTap(context),
-                child: Container(
+                onTap: _isToggled
+                    ? () => _onCreatedAccountTap(context)
+                    : null, // If toggle is off, set to null so that it won't be tappable
+                child: AnimatedContainer(
+                  duration:
+                      const Duration(milliseconds: 500), // Animation duration
                   padding: const EdgeInsets.symmetric(
                     vertical: Sizes.size16,
                     horizontal: Sizes.size10,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF101318),
+                    color: _isToggled
+                        ? const Color(
+                            0xFF101318) // Desired color when toggled on
+                        : Colors.grey, // Greyed out when toggled off
                     borderRadius: BorderRadius.circular(27),
                     border: Border.all(
                       color: Colors.grey.shade300,
                       width: Sizes.size2,
                     ),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Gaps.h16,
-                      Text(
-                        'Next',
+                      AnimatedDefaultTextStyle(
+                        duration: const Duration(
+                            milliseconds: 500), // Animation duration
                         style: TextStyle(
-                          color: Colors.white,
+                          color: _isToggled
+                              ? Colors.white
+                              : Colors.grey
+                                  .shade400, // Adjusting text color based on toggle
                           fontSize: Sizes.size16 + 3,
                           fontWeight: FontWeight.w700,
+                        ),
+                        child: const Text(
+                          'Next',
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ],

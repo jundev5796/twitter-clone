@@ -37,8 +37,6 @@ class _AccountScreenState extends State<AccountScreen> {
         _email = _emailController.text;
       });
     });
-
-    _setTextFieldDate(initialDate);
   }
 
   @override
@@ -57,7 +55,11 @@ class _AccountScreenState extends State<AccountScreen> {
     if (_name.isEmpty || _email.isEmpty || _birthday.isEmpty) return;
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const ExperienceScreen(),
+        builder: (context) => ExperienceScreen(
+          name: _name,
+          email: _email,
+          birthday: _birthday,
+        ),
       ),
     );
   }
@@ -76,14 +78,18 @@ class _AccountScreenState extends State<AccountScreen> {
   void _onSubmit() {
     if (_name.isEmpty ||
         _email.isEmpty ||
-        !_isEmailValid() || // Changed this condition
+        !_isEmailValid() ||
         _birthday.isEmpty) {
       return;
     }
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const ExperienceScreen(),
+        builder: (context) => ExperienceScreen(
+          name: _name,
+          email: _email,
+          birthday: _birthday,
+        ),
       ),
     );
   }
@@ -271,8 +277,16 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                   ),
                 ),
+                Gaps.v10,
+                Text(
+                  'This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.',
+                  style: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 15,
+                  ),
+                ),
                 const SizedBox(
-                  height: 400,
+                  height: 350,
                 ),
                 Align(
                   alignment: Alignment.topRight,
