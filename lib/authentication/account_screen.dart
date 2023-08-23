@@ -202,10 +202,12 @@ class _AccountScreenState extends State<AccountScreen> {
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color:
-                            _name.isEmpty || _email.isEmpty || _birthday.isEmpty
-                                ? Colors.grey
-                                : const Color(0xFF101318),
+                        color: _name.isEmpty ||
+                                _email.isEmpty ||
+                                _isEmailValid() != null ||
+                                _birthday.isEmpty
+                            ? Colors.grey
+                            : const Color(0xFF101318),
                       ),
                       duration: const Duration(milliseconds: 500),
                       child: AnimatedDefaultTextStyle(
