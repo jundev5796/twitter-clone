@@ -155,7 +155,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Container(
+              child: AnimatedContainer(
                 padding: const EdgeInsets.symmetric(
                   vertical: Sizes.size10,
                   horizontal: Sizes.size20,
@@ -166,13 +166,19 @@ class _AccountScreenState extends State<AccountScreen> {
                       ? Colors.grey
                       : const Color(0xFF101318),
                 ),
-                child: const Text(
-                  'Next',
+                duration: const Duration(milliseconds: 300),
+                child: AnimatedDefaultTextStyle(
+                  duration: const Duration(milliseconds: 300),
                   style: TextStyle(
-                    color: Color.fromARGB(255, 229, 226, 226),
+                    color: _name.isEmpty || _email.isEmpty || _birthday.isEmpty
+                        ? const Color.fromARGB(255, 229, 226, 226)
+                        : Colors.white,
                     fontSize: Sizes.size16 + 2,
                   ),
-                  textAlign: TextAlign.center,
+                  child: const Text(
+                    'Next',
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
