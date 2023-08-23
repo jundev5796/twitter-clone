@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:twitter_clone/authentication/experience_screen.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
@@ -40,8 +41,25 @@ class _AccountScreenState extends State<AccountScreen> {
     });
   }
 
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _birthdayController.dispose();
+    super.dispose();
+  }
+
   void onInitialTap(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  void _onNextTap() {
+    if (_name.isEmpty || _email.isEmpty || _birthday.isEmpty) return;
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ExperienceScreen(),
+      ),
+    );
   }
 
   @override
@@ -155,29 +173,33 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: AnimatedContainer(
-                padding: const EdgeInsets.symmetric(
-                  vertical: Sizes.size10,
-                  horizontal: Sizes.size20,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: _name.isEmpty || _email.isEmpty || _birthday.isEmpty
-                      ? Colors.grey
-                      : const Color(0xFF101318),
-                ),
-                duration: const Duration(milliseconds: 300),
-                child: AnimatedDefaultTextStyle(
-                  duration: const Duration(milliseconds: 300),
-                  style: TextStyle(
-                    color: _name.isEmpty || _email.isEmpty || _birthday.isEmpty
-                        ? const Color.fromARGB(255, 229, 226, 226)
-                        : Colors.white,
-                    fontSize: Sizes.size16 + 2,
+              child: GestureDetector(
+                onTap: _onNextTap,
+                child: AnimatedContainer(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Sizes.size10,
+                    horizontal: Sizes.size20,
                   ),
-                  child: const Text(
-                    'Next',
-                    textAlign: TextAlign.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: _name.isEmpty || _email.isEmpty || _birthday.isEmpty
+                        ? Colors.grey
+                        : const Color(0xFF101318),
+                  ),
+                  duration: const Duration(milliseconds: 500),
+                  child: AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 00),
+                    style: TextStyle(
+                      color:
+                          _name.isEmpty || _email.isEmpty || _birthday.isEmpty
+                              ? const Color.fromARGB(255, 229, 226, 226)
+                              : Colors.white,
+                      fontSize: Sizes.size16 + 2,
+                    ),
+                    child: const Text(
+                      'Next',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
