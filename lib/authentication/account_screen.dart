@@ -76,6 +76,19 @@ class _AccountScreenState extends State<AccountScreen> {
     FocusScope.of(context).unfocus();
   }
 
+  void _onSubmit() {
+    if (_name.isEmpty ||
+        _email.isEmpty ||
+        _isEmailValid() != null ||
+        _birthday.isEmpty) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ExperienceScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -120,6 +133,9 @@ class _AccountScreenState extends State<AccountScreen> {
                 Gaps.v44,
                 TextField(
                   controller: _nameController,
+                  keyboardType: TextInputType.emailAddress,
+                  onEditingComplete: _onSubmit,
+                  autocorrect: false,
                   style: const TextStyle(
                     color: Colors.blue,
                   ),
@@ -144,6 +160,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 TextField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
+                  onEditingComplete: _onSubmit,
                   autocorrect: false,
                   style: const TextStyle(
                     color: Colors.blue,
@@ -168,6 +185,9 @@ class _AccountScreenState extends State<AccountScreen> {
                 Gaps.v40,
                 TextField(
                   controller: _birthdayController,
+                  keyboardType: TextInputType.emailAddress,
+                  onEditingComplete: _onSubmit,
+                  autocorrect: false,
                   style: const TextStyle(
                     color: Colors.blue,
                   ),
@@ -194,35 +214,38 @@ class _AccountScreenState extends State<AccountScreen> {
                 Align(
                   alignment: Alignment.topRight,
                   child: GestureDetector(
-                    onTap: _onNextTap,
-                    child: AnimatedContainer(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Sizes.size10,
-                        horizontal: Sizes.size20,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: _name.isEmpty ||
-                                _email.isEmpty ||
-                                _isEmailValid() != null ||
-                                _birthday.isEmpty
-                            ? Colors.grey
-                            : const Color(0xFF101318),
-                      ),
-                      duration: const Duration(milliseconds: 500),
-                      child: AnimatedDefaultTextStyle(
-                        duration: const Duration(milliseconds: 00),
-                        style: TextStyle(
+                    onTap: _onSubmit,
+                    child: GestureDetector(
+                      onTap: _onNextTap,
+                      child: AnimatedContainer(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Sizes.size10,
+                          horizontal: Sizes.size20,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
                           color: _name.isEmpty ||
                                   _email.isEmpty ||
+                                  _isEmailValid() != null ||
                                   _birthday.isEmpty
-                              ? const Color.fromARGB(255, 229, 226, 226)
-                              : Colors.white,
-                          fontSize: Sizes.size16 + 2,
+                              ? Colors.grey
+                              : const Color(0xFF101318),
                         ),
-                        child: const Text(
-                          'Next',
-                          textAlign: TextAlign.center,
+                        duration: const Duration(milliseconds: 500),
+                        child: AnimatedDefaultTextStyle(
+                          duration: const Duration(milliseconds: 00),
+                          style: TextStyle(
+                            color: _name.isEmpty ||
+                                    _email.isEmpty ||
+                                    _birthday.isEmpty
+                                ? const Color.fromARGB(255, 229, 226, 226)
+                                : Colors.white,
+                            fontSize: Sizes.size16 + 2,
+                          ),
+                          child: const Text(
+                            'Next',
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ),
