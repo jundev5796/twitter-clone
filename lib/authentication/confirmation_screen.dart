@@ -24,6 +24,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const FaIcon(
           FontAwesomeIcons.twitter,
@@ -84,8 +85,12 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                   6,
                   (index) => Container(
                     margin: const EdgeInsets.symmetric(horizontal: 5),
-                    width: 45,
+                    width: 48,
                     child: TextField(
+                      style: const TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w800,
+                      ),
                       controller: controllers[index],
                       focusNode: focusNodes[index],
                       keyboardType: TextInputType.number,
@@ -110,6 +115,62 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                 ).toList(),
               ),
             )
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        elevation: 0,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 18,
+                  horizontal: 40,
+                ),
+                child: Text(
+                  "Didn't receive email?",
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 40,
+              ),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(27),
+                  border: Border.all(
+                    color: Colors.grey.shade300,
+                    width: Sizes.size2,
+                  ),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Next',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 229, 226, 226),
+                        fontSize: Sizes.size16 + 3,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
