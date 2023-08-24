@@ -13,6 +13,10 @@ class ConfirmationScreen extends StatefulWidget {
 }
 
 class _ConfirmationScreenState extends State<ConfirmationScreen> {
+  List<TextEditingController> controllers =
+      List.generate(6, (index) => TextEditingController());
+  List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
+
   void onInitialTap(BuildContext context) {
     Navigator.of(context).pop();
   }
@@ -72,6 +76,40 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                 fontSize: Sizes.size16 + 2,
               ),
             ),
+            Gaps.v60,
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  6,
+                  (index) => Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 5),
+                    width: 45,
+                    child: TextField(
+                      controller: controllers[index],
+                      focusNode: focusNodes[index],
+                      keyboardType: TextInputType.number,
+                      textAlign: TextAlign.center,
+                      maxLength: 1,
+                      onChanged: (value) {
+                        if (value.isNotEmpty && index < 5) {
+                          focusNodes[index + 1].requestFocus();
+                        }
+                      },
+                      decoration: const InputDecoration(
+                        counterText: "", // To hide the counter text
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                      ),
+                    ),
+                  ),
+                ).toList(),
+              ),
+            )
           ],
         ),
       ),
