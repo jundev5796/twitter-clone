@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
-import 'package:twitter_clone/onBoarding/home_screen.dart';
+import 'package:twitter_clone/authentication/confirmation_screen.dart';
 
 class CreatedAccountScreen extends StatefulWidget {
   final String? name;
@@ -40,7 +40,7 @@ class _CreatedAccountScreenState extends State<CreatedAccountScreen> {
   void _onSignUpTap(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
+        builder: (context) => ConfirmationScreen(email: emailController.text),
       ),
     );
   }
