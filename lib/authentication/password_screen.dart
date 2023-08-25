@@ -144,50 +144,45 @@ class _PasswordScreenState extends State<PasswordScreen> {
               const SizedBox(
                 height: 200,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                ),
-                child: GestureDetector(
-                  onTap: isButtonEnabled ? _onNextTap : null,
-                  child: AnimatedContainer(
-                    duration: const Duration(
-                        milliseconds:
-                            300), // animation duration for the container
-                    curve: Curves.easeOut, // easing for the container
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16,
-                      horizontal: 10,
+              GestureDetector(
+                onTap: _isPasswordValid() ? _onNextTap : null,
+                child: AnimatedContainer(
+                  duration: const Duration(
+                      milliseconds:
+                          300), // animation duration for the container
+                  curve: Curves.easeOut, // easing for the container
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: _isPasswordValid()
+                        ? const Color(0xFF101318) // Enabled color
+                        : Colors.grey, // Disabled color
+                    borderRadius: BorderRadius.circular(27),
+                    border: Border.all(
+                      color: Colors.grey.shade300,
+                      width: Sizes.size2,
                     ),
-                    decoration: BoxDecoration(
-                      color: isButtonEnabled
-                          ? const Color(0xFF101318)
-                          : Colors.grey, // conditional color
-                      borderRadius: BorderRadius.circular(27),
-                      border: Border.all(
-                        color: Colors.grey.shade300,
-                        width: Sizes.size2,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AnimatedDefaultTextStyle(
-                          style: TextStyle(
-                            color: isButtonEnabled
-                                ? Colors.white
-                                : const Color.fromARGB(255, 229, 226, 226),
-                            fontSize: Sizes.size16 + 3,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          duration: const Duration(
-                              milliseconds:
-                                  300), // animation duration for the text
-                          // easing for the text
-                          child: const Text('Next'),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AnimatedDefaultTextStyle(
+                        style: TextStyle(
+                          color: isButtonEnabled
+                              ? Colors.white
+                              : const Color.fromARGB(255, 229, 226, 226),
+                          fontSize: Sizes.size16 + 3,
+                          fontWeight: FontWeight.w700,
                         ),
-                      ],
-                    ),
+                        duration: const Duration(
+                            milliseconds:
+                                300), // animation duration for the text
+                        // easing for the text
+                        child: const Text('Next'),
+                      ),
+                    ],
                   ),
                 ),
               ),
