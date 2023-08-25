@@ -13,12 +13,24 @@ class ConfirmationScreen extends StatefulWidget {
 }
 
 class _ConfirmationScreenState extends State<ConfirmationScreen> {
+  bool isButtonEnabled = false;
+
   List<TextEditingController> controllers =
       List.generate(6, (index) => TextEditingController());
   List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
 
   void onInitialTap(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  void checkIfAllFilled() {
+    bool allFilled =
+        controllers.every((controller) => controller.text.length == 1);
+    setState(
+      () {
+        isButtonEnabled = allFilled;
+      },
+    );
   }
 
   @override
@@ -100,6 +112,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                         if (value.isNotEmpty && index < 5) {
                           focusNodes[index + 1].requestFocus();
                         }
+                        checkIfAllFilled(); // Add this line
                       },
                       decoration: const InputDecoration(
                         counterText: "", // To hide the counter text
@@ -143,29 +156,39 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
               padding: const EdgeInsets.symmetric(
                 horizontal: 40,
               ),
-              child: Container(
+              child: AnimatedContainer(
+                duration: const Duration(
+                    milliseconds: 300), // animation duration for the container
+                curve: Curves.easeOut, // easing for the container
                 padding: const EdgeInsets.symmetric(
                   vertical: 16,
                   horizontal: 10,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: isButtonEnabled
+                      ? const Color(0xFF101318)
+                      : Colors.grey, // conditional color
                   borderRadius: BorderRadius.circular(27),
                   border: Border.all(
                     color: Colors.grey.shade300,
                     width: Sizes.size2,
                   ),
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Next',
+                    AnimatedDefaultTextStyle(
                       style: TextStyle(
-                        color: Color.fromARGB(255, 229, 226, 226),
+                        color: isButtonEnabled
+                            ? Colors.white
+                            : const Color.fromARGB(255, 229, 226, 226),
                         fontSize: Sizes.size16 + 3,
                         fontWeight: FontWeight.w700,
                       ),
+                      duration: const Duration(
+                          milliseconds: 300), // animation duration for the text
+                      // easing for the text
+                      child: const Text('Next'),
                     ),
                   ],
                 ),
