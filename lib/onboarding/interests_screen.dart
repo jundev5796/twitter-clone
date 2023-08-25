@@ -25,21 +25,30 @@ class _InterestsScreenState extends State<InterestsScreen> {
         backgroundColor: Theme.of(context).secondaryHeaderColor,
         elevation: 0,
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
           horizontal: Sizes.size40,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gaps.v20,
-            Text(
-              "What do you want to see on Twitter?",
+            const Text(
+              "What do you want to see on Twitter",
               style: TextStyle(
-                fontSize: Sizes.size2,
+                fontSize: Sizes.size28 + 2,
                 fontWeight: FontWeight.w800,
               ),
             ),
+            Gaps.v24,
+            Text(
+              "Select at least 3 interests to personalize your Twitter experience. They will be visible on your profile.",
+              style: TextStyle(
+                color: Colors.grey.shade700,
+                fontSize: Sizes.size16 + 2,
+              ),
+            ),
+            Gaps.v44,
           ],
         ),
       ),
