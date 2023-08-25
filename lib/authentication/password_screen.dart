@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
 class PasswordScreen extends StatefulWidget {
@@ -23,6 +24,59 @@ class _PasswordScreenState extends State<PasswordScreen> {
         leadingWidth: 100,
         backgroundColor: Theme.of(context).secondaryHeaderColor,
         elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: Sizes.size40,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Gaps.v20,
+            const Text(
+              "You'll need a password",
+              style: TextStyle(
+                fontSize: Sizes.size28 + 1.4,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            Gaps.v24,
+            Text(
+              "Make sure it's 8 characters or more.",
+              style: TextStyle(
+                color: Colors.grey.shade700,
+                fontSize: Sizes.size16 + 2,
+              ),
+            ),
+            Gaps.v44,
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Password",
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                suffixIcon: Row(
+                  mainAxisSize: MainAxisSize.min, // Add this line
+                  children: [
+                    FaIcon(
+                      FontAwesomeIcons.eyeSlash,
+                      color: Colors.grey.shade500,
+                      size: Sizes.size20,
+                    ),
+                  ],
+                ),
+              ),
+              cursorColor: Theme.of(context).primaryColor,
+            ),
+          ],
+        ),
       ),
     );
   }
