@@ -10,10 +10,6 @@ class PasswordScreen extends StatefulWidget {
 }
 
 class _PasswordScreenState extends State<PasswordScreen> {
-  void onInitialTap(BuildContext context) {
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,17 +21,6 @@ class _PasswordScreenState extends State<PasswordScreen> {
           size: Sizes.size20 + 10,
         ),
         leadingWidth: 100,
-        leading: IconButton(
-          onPressed: () => onInitialTap(context),
-          icon: const Padding(
-            padding:
-                EdgeInsets.only(right: 40), // Adjust this value to your needs
-            child: FaIcon(
-              FontAwesomeIcons.arrowLeft,
-              color: Color(0xFF101318),
-            ),
-          ),
-        ),
         backgroundColor: Theme.of(context).secondaryHeaderColor,
         elevation: 0,
       ),

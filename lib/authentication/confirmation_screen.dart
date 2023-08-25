@@ -36,10 +36,11 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
   }
 
   void _onNextTap() {
-    Navigator.of(context).push(
+    Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) => const PasswordScreen(),
       ),
+      (route) => false,
     );
   }
 
