@@ -11,6 +11,8 @@ class PasswordScreen extends StatefulWidget {
 }
 
 class _PasswordScreenState extends State<PasswordScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +52,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
             ),
             Gaps.v44,
             TextField(
+              controller: _passwordController,
               decoration: InputDecoration(
                 hintText: "Password",
                 enabledBorder: UnderlineInputBorder(
