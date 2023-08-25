@@ -14,6 +14,7 @@ class ConfirmationScreen extends StatefulWidget {
 
 class _ConfirmationScreenState extends State<ConfirmationScreen> {
   bool isButtonEnabled = false;
+  bool showCheckIcon = false;
 
   List<TextEditingController> controllers =
       List.generate(6, (index) => TextEditingController());
@@ -26,11 +27,10 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
   void checkIfAllFilled() {
     bool allFilled =
         controllers.every((controller) => controller.text.length == 1);
-    setState(
-      () {
-        isButtonEnabled = allFilled;
-      },
-    );
+    setState(() {
+      isButtonEnabled = allFilled;
+      showCheckIcon = allFilled; // Add this line
+    });
   }
 
   @override
@@ -127,7 +127,16 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                   ),
                 ).toList(),
               ),
-            )
+            ),
+            Gaps.v28,
+            if (showCheckIcon)
+              const Center(
+                child: FaIcon(
+                  FontAwesomeIcons.circleCheck,
+                  color: Colors.green,
+                  size: 30,
+                ),
+              ),
           ],
         ),
       ),
