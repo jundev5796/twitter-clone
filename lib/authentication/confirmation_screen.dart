@@ -193,12 +193,12 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: _onNextTap,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 40,
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40,
+                ),
+                child: GestureDetector(
+                  onTap: isButtonEnabled ? _onNextTap : null,
                   child: AnimatedContainer(
                     duration: const Duration(
                         milliseconds:
