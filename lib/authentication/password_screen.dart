@@ -31,6 +31,10 @@ class _PasswordScreenState extends State<PasswordScreen> {
     super.dispose();
   }
 
+  bool _isPasswordValid() {
+    return _password.isNotEmpty && _password.length > 8;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +75,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
             Gaps.v44,
             TextField(
               controller: _passwordController,
+              autocorrect: false,
               decoration: InputDecoration(
                 hintText: "Password",
                 enabledBorder: UnderlineInputBorder(
