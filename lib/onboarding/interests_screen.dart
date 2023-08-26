@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
+import 'package:twitter_clone/onboarding/interests_screen_two.dart';
 
 const interests = [
   "Fashion & beauty",
@@ -37,6 +38,15 @@ class InterestsScreen extends StatefulWidget {
 
 class _InterestsScreenState extends State<InterestsScreen> {
   final List<String> _selectedInterests = [];
+
+  void _onNextTap() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const InterestsScreenTwo(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +97,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                         setState(() {
                           if (_selectedInterests.contains(interest)) {
                             _selectedInterests.remove(interest);
-                          } else if (_selectedInterests.length < 3) {
+                          } else {
                             _selectedInterests.add(interest);
                           }
                         });
@@ -136,7 +146,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                               child: _selectedInterests.contains(interest)
                                   ? const FaIcon(
                                       FontAwesomeIcons
-                                          .checkCircle, // Corrected the icon reference
+                                          .circleCheck, // Corrected the icon reference
                                       color: Colors.white,
                                       size: 20, // Adjust the size as needed
                                     )
@@ -170,31 +180,34 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 ),
               ),
               GestureDetector(
-                onTap: _selectedInterests.length == 3
+                onTap: _selectedInterests.length >= 3
                     ? () {
-                        // Place your "Next" action logic here
+                        // Your next action logic here
                       }
                     : null,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: Sizes.size10,
-                    horizontal: Sizes.size20,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: _selectedInterests.length == 3
-                        ? const Color(0xFF101318)
-                        : Colors.grey,
-                  ),
-                  child: Text(
-                    'Next',
-                    style: TextStyle(
-                      color: _selectedInterests.length == 3
-                          ? Colors.white
-                          : const Color.fromARGB(255, 229, 226, 226),
-                      fontSize: Sizes.size16 + 2,
+                child: GestureDetector(
+                  onTap: _onNextTap,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: Sizes.size10,
+                      horizontal: Sizes.size20,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: _selectedInterests.length >= 3
+                          ? const Color(0xFF101318)
+                          : Colors.grey,
+                    ),
+                    child: Text(
+                      'Next',
+                      style: TextStyle(
+                        color: _selectedInterests.length >= 3
+                            ? Colors.white
+                            : const Color.fromARGB(255, 229, 226, 226),
+                        fontSize: Sizes.size16 + 2,
+                      ),
                     ),
                   ),
                 ),
