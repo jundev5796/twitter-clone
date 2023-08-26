@@ -73,7 +73,31 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 fontSize: Sizes.size16 + 2,
               ),
             ),
-            Gaps.v44,
+            Gaps.v64,
+            for (var interest in interests)
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: Sizes.size24,
+                  horizontal: Sizes.size12,
+                ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      (Sizes.size32),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 5,
+                        spreadRadius: 5,
+                      )
+                    ]),
+                child: Text(
+                  interest,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              )
           ],
         ),
       ),
