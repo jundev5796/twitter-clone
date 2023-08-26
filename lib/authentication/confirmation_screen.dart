@@ -19,8 +19,8 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
   bool disableFields = false;
 
   List<TextEditingController> controllers =
-      List.generate(6, (index) => TextEditingController());
-  List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
+      List.generate(4, (index) => TextEditingController());
+  List<FocusNode> focusNodes = List.generate(4, (index) => FocusNode());
 
   void onInitialTap(BuildContext context) {
     Navigator.of(context).pop();
@@ -112,7 +112,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
-                    6,
+                    4,
                     (index) => Container(
                         margin: const EdgeInsets.symmetric(horizontal: 5),
                         width: 48,
@@ -141,7 +141,7 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                               textAlign: TextAlign.center,
                               maxLength: 1,
                               onChanged: (value) {
-                                if (value.isNotEmpty && index < 5) {
+                                if (value.isNotEmpty && index < 3) {
                                   focusNodes[index + 1].requestFocus();
                                 }
                                 checkIfAllFilled();
