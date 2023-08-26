@@ -3,6 +3,43 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
+const music = [
+  "Rap",
+  "R&B & soul",
+  "Grammy Awards",
+  "Pop",
+  "K-pop",
+  "Music industry",
+  "EDM",
+  "Music news",
+  "Hip hop",
+  "Reggae",
+  "Rock",
+  "Jazz",
+  "Popular music",
+  "Electronic",
+  "Classical",
+  "Alternative",
+];
+
+const entertainment = [
+  "Anime",
+  "Games",
+  "The Game Awards",
+  "Ys",
+  "Legend of Heroes",
+  "Final Fantasy",
+  "Spider-Man",
+  "One Piece",
+  "Oshi no Ko",
+  "Movies & TV",
+  "Harry Potter",
+  "Marvel",
+  "Movie news",
+  "Movies",
+  "Grammy Awards",
+];
+
 class InterestsScreenTwo extends StatefulWidget {
   const InterestsScreenTwo({super.key});
 
@@ -63,7 +100,18 @@ class _InterestsScreenTwoState extends State<InterestsScreenTwo> {
                 fontSize: Sizes.size16 + 2,
               ),
             ),
-            Gaps.v64,
+            Gaps.v40,
+            const Column(
+              children: [
+                Text(
+                  'Music',
+                  style: TextStyle(
+                    fontSize: Sizes.size20 + 2,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
