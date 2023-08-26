@@ -50,55 +50,66 @@ class _InterestsScreenState extends State<InterestsScreen> {
         backgroundColor: Theme.of(context).secondaryHeaderColor,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Sizes.size40,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Gaps.v20,
-            const Text(
-              "What do you want to see on Twitter",
-              style: TextStyle(
-                fontSize: Sizes.size28 + 2,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            Gaps.v24,
-            Text(
-              "Select at least 3 interests to personalize your Twitter experience. They will be visible on your profile.",
-              style: TextStyle(
-                color: Colors.grey.shade700,
-                fontSize: Sizes.size16 + 2,
-              ),
-            ),
-            Gaps.v64,
-            for (var interest in interests)
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: Sizes.size24,
-                  horizontal: Sizes.size12,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Sizes.size40,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gaps.v20,
+              const Text(
+                "What do you want to see on Twitter",
+                style: TextStyle(
+                  fontSize: Sizes.size28 + 2,
+                  fontWeight: FontWeight.w800,
                 ),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      (Sizes.size32),
+              ),
+              Gaps.v24,
+              Text(
+                "Select at least 3 interests to personalize your Twitter experience. They will be visible on your profile.",
+                style: TextStyle(
+                  color: Colors.grey.shade700,
+                  fontSize: Sizes.size16 + 2,
+                ),
+              ),
+              Gaps.v64,
+              Wrap(
+                runSpacing: 20,
+                spacing: 20,
+                children: [
+                  for (var interest in interests)
+                    Container(
+                      width: 160,
+                      height: 90,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: Sizes.size24,
+                        horizontal: Sizes.size12,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          (Sizes.size32),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 5,
+                            spreadRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        interest,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 5,
-                        spreadRadius: 5,
-                      )
-                    ]),
-                child: Text(
-                  interest,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              )
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
