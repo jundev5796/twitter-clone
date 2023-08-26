@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
-const music = [
+const musics = [
   "Rap",
   "R&B & soul",
   "Grammy Awards",
@@ -22,7 +22,7 @@ const music = [
   "Alternative",
 ];
 
-const entertainment = [
+const entertainments = [
   "Anime",
   "Games",
   "The Game Awards",
@@ -101,15 +101,35 @@ class _InterestsScreenTwoState extends State<InterestsScreenTwo> {
               ),
             ),
             Gaps.v40,
-            const Column(
+            const Text(
+              'Music',
+              style: TextStyle(
+                fontSize: Sizes.size20 + 2,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Gaps.v28,
+            Wrap(
               children: [
-                Text(
-                  'Music',
-                  style: TextStyle(
-                    fontSize: Sizes.size20 + 2,
-                    fontWeight: FontWeight.w700,
+                for (var music in musics)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: Sizes.size14,
+                      horizontal: Sizes.size24 + 2,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: Colors.grey.shade300,
+                      ),
+                    ),
+                    child: Text(
+                      music,
+                      style: const TextStyle(
+                        fontSize: Sizes.size16,
+                      ),
+                    ),
                   ),
-                ),
               ],
             ),
           ],
