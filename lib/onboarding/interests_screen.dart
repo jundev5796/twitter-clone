@@ -3,6 +3,31 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
+const interests = [
+  "Fashion & beauty",
+  "Outdoors",
+  "Arts & culture",
+  "Animation & comics",
+  "Buriness & finance",
+  "Food",
+  "Travel",
+  "Entertainment",
+  "Music",
+  "Gaming",
+  "Daily ㅣife",
+  "Comedy",
+  "Animals",
+  "Beauty & style",
+  "Drama",
+  "Learning",
+  "Talent",
+  "Sports",
+  "Fitness & Health",
+  "Dance",
+  "Art",
+  "Shopping",
+];
+
 class InterestsScreen extends StatefulWidget {
   const InterestsScreen({super.key});
 
