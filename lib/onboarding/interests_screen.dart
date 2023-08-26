@@ -174,9 +174,9 @@ class _InterestsScreenState extends State<InterestsScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${_selectedInterests.length} of 3 selected',
-                style: TextStyle(
-                  color: Colors.grey.shade400,
+                '${_selectedInterests.length > 3 ? 3 : _selectedInterests.length} of 3 selected',
+                style: const TextStyle(
+                  color: Colors.grey,
                 ),
               ),
               GestureDetector(

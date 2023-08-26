@@ -57,7 +57,7 @@ class _InterestsScreenTwoState extends State<InterestsScreenTwo> {
             ),
             Gaps.v24,
             Text(
-              "Select at least 3 interests to personalize your Twitter experience. They will be visible on your profile.",
+              "Interests are used to personalize your experience and will be visible on your profile.",
               style: TextStyle(
                 color: Colors.grey.shade700,
                 fontSize: Sizes.size16 + 2,
