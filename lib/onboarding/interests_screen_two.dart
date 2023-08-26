@@ -52,8 +52,18 @@ class _InterestsScreenTwoState extends State<InterestsScreenTwo> {
     Navigator.of(context).pop();
   }
 
+  List<List<T>> chunk<T>(List<T> list, int size) {
+    var chunks = <List<T>>[];
+    for (var i = 0; i < list.length; i += size) {
+      chunks.add(
+          list.sublist(i, i + size > list.length ? list.length : i + size));
+    }
+    return chunks;
+  }
+
   @override
   Widget build(BuildContext context) {
+    double chipWidth = 100.0;
     return Scaffold(
       backgroundColor: Theme.of(context).secondaryHeaderColor,
       appBar: AppBar(
@@ -109,28 +119,100 @@ class _InterestsScreenTwoState extends State<InterestsScreenTwo> {
               ),
             ),
             Gaps.v28,
-            Wrap(
-              children: [
-                for (var music in musics)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Sizes.size14,
-                      horizontal: Sizes.size24 + 2,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color: Colors.grey.shade300,
-                      ),
-                    ),
-                    child: Text(
-                      music,
-                      style: const TextStyle(
-                        fontSize: Sizes.size16,
-                      ),
-                    ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.22,
+              child: Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: chunk(musics, (musics.length / 3).ceil())
+                        .map((musicChunk) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: Sizes.size10),
+                        child: Row(
+                          children: musicChunk.map((music) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.only(right: Sizes.size10),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: Sizes.size14,
+                                  horizontal: Sizes.size24 + 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  border: Border.all(
+                                    color: Colors.grey.shade300,
+                                  ),
+                                ),
+                                child: Text(
+                                  music,
+                                  style: const TextStyle(
+                                    fontSize: Sizes.size16,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    }).toList(),
                   ),
-              ],
+                ),
+              ),
+            ),
+            const Text(
+              'Entertainment',
+              style: TextStyle(
+                fontSize: Sizes.size20 + 2,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Gaps.v28,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.3,
+              child: Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: chunk(
+                            entertainments, (entertainments.length / 3).ceil())
+                        .map((entertainmentChunk) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: Sizes.size10),
+                        child: Row(
+                          children: entertainmentChunk.map((music) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.only(right: Sizes.size10),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: Sizes.size14,
+                                  horizontal: Sizes.size24 + 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  border: Border.all(
+                                    color: Colors.grey.shade300,
+                                  ),
+                                ),
+                                child: Text(
+                                  music,
+                                  style: const TextStyle(
+                                    fontSize: Sizes.size16,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
