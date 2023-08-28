@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/widgets/nav_tab.dart';
+import 'package:twitter_clone/home/widgets/placeholder.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,10 +23,33 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Stack(
+        children: [
+          Offstage(
+            offstage: _selectedIndex != 1,
+            child: const PlaceholderWidget(text: "Search"),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 2,
+            child: const PlaceholderWidget(text: "Tread"),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 3,
+            child: const PlaceholderWidget(text: "Notification"),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: const PlaceholderWidget(text: "Profile"),
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.all(Sizes.size12),
+          padding: const EdgeInsets.symmetric(
+            vertical: Sizes.size16,
+            horizontal: Sizes.size12,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
