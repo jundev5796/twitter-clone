@@ -15,7 +15,7 @@ const interests = [
   "Entertainment",
   "Music",
   "Gaming",
-  "Daily ㅣife",
+  "Daily life",
   "Comedy",
   "Animals",
   "Beauty & style",
@@ -174,7 +174,9 @@ class _InterestsScreenState extends State<InterestsScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${_selectedInterests.length} of 3 selected',
+                _selectedInterests.length >= 3
+                    ? 'Great work 🎉'
+                    : '${_selectedInterests.length} of 3 selected',
                 style: TextStyle(
                   color: Colors.grey.shade400,
                 ),

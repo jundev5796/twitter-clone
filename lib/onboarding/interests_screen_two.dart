@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
-import 'package:twitter_clone/onboarding/home_screen.dart';
+import 'package:twitter_clone/home/home_screen.dart';
 
 const musics = [
   "Rap",
