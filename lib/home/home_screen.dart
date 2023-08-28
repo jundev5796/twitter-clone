@@ -23,25 +23,44 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Offstage(
-            offstage: _selectedIndex != 1,
-            child: const PlaceholderWidget(text: "Search"),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 2,
-            child: const PlaceholderWidget(text: "Tread"),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 3,
-            child: const PlaceholderWidget(text: "Notification"),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 4,
-            child: const PlaceholderWidget(text: "Profile"),
-          ),
-        ],
+      appBar: AppBar(
+        title: const FaIcon(
+          FontAwesomeIcons.at,
+          color: Colors.black,
+          size: Sizes.size20 + 10,
+        ),
+        leadingWidth: 100,
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: Sizes.size40,
+        ),
+        child: Stack(
+          children: [
+            Offstage(
+              offstage: _selectedIndex != 1,
+              child: const SingleChildScrollView(child: Column()),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 1,
+              child: const PlaceholderWidget(text: "Search"),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 2,
+              child: const PlaceholderWidget(text: "Tread"),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 3,
+              child: const PlaceholderWidget(text: "Notification"),
+            ),
+            Offstage(
+              offstage: _selectedIndex != 4,
+              child: const PlaceholderWidget(text: "Profile"),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
