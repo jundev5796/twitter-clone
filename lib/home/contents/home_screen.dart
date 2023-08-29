@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Gaps.v10,
                 Container(
-                  height: 245,
+                  height: 225,
                   width: 2,
                   color: Colors.grey.shade300,
                 ),
@@ -127,42 +127,29 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Gaps.v10,
                   SizedBox(
-                    height: 200,
+                    height: 180,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 5,
                       itemBuilder: (context, index) {
+                        // List of image URLs
+                        List<String> urls = [
+                          "https://pbs.twimg.com/media/F3907eOWkAINvi3.jpg",
+                          "https://images5.alphacoders.com/132/1324754.png",
+                          "https://images5.alphacoders.com/131/1318376.jpeg",
+                          "https://wallpapercave.com/wp/wp12433416.jpg",
+                          "https://cdn.cloudflare.steamstatic.com/steam/apps/1971870/capsule_616x353.jpg?t=1691778864",
+                        ];
+
                         return Padding(
-                          padding: const EdgeInsets.only(
-                            right: 10.0,
-                          ), // spacing between images
-                          child: Row(
-                            children: [
-                              Image.network(
-                                "https://pbs.twimg.com/media/F3907eOWkAINvi3.jpg",
-                                fit: BoxFit.cover,
-                              ),
-                              Gaps.h10,
-                              Image.network(
-                                "https://images5.alphacoders.com/132/1324754.png",
-                                fit: BoxFit.cover,
-                              ),
-                              Gaps.h10,
-                              Image.network(
-                                "https://images5.alphacoders.com/131/1318376.jpeg",
-                                fit: BoxFit.cover,
-                              ),
-                              Gaps.h10,
-                              Image.network(
-                                "https://wallpapercave.com/wp/wp12433416.jpg",
-                                fit: BoxFit.cover,
-                              ),
-                              Gaps.h10,
-                              Image.network(
-                                "https://cdn.cloudflare.steamstatic.com/steam/apps/1971870/capsule_616x353.jpg?t=1691778864",
-                                fit: BoxFit.cover,
-                              ),
-                            ],
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                                10.0), // This will give a slight rounded corner
+                            child: Image.network(
+                              urls[index],
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         );
                       },
