@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
+import 'package:twitter_clone/home/contents/home_screen.dart';
 import 'package:twitter_clone/home/widgets/nav_tab.dart';
 import 'package:twitter_clone/home/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   void _onTap(int index) {
@@ -24,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: SvgPicture.asset(
           'assets/icons/threads-icon.svg',
@@ -34,34 +37,29 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Theme.of(context).secondaryHeaderColor,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Sizes.size40,
-        ),
-        child: Stack(
-          children: [
-            Offstage(
-              offstage: _selectedIndex != 1,
-              child: const SingleChildScrollView(child: Column()),
-            ),
-            Offstage(
-              offstage: _selectedIndex != 1,
-              child: const PlaceholderWidget(text: "Search"),
-            ),
-            Offstage(
-              offstage: _selectedIndex != 2,
-              child: const PlaceholderWidget(text: "Tread"),
-            ),
-            Offstage(
-              offstage: _selectedIndex != 3,
-              child: const PlaceholderWidget(text: "Notification"),
-            ),
-            Offstage(
-              offstage: _selectedIndex != 4,
-              child: const PlaceholderWidget(text: "Profile"),
-            ),
-          ],
-        ),
+      body: Stack(
+        children: [
+          Offstage(
+            offstage: _selectedIndex != 0,
+            child: const HomeScreen(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 1,
+            child: const PlaceholderWidget(text: "Search"),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 2,
+            child: const PlaceholderWidget(text: "Tread"),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 3,
+            child: const PlaceholderWidget(text: "Notification"),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: const PlaceholderWidget(text: "Profile"),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
