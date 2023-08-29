@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/widgets/nav_tab.dart';
 import 'package:twitter_clone/home/widgets/placeholder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,10 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const FaIcon(
-          FontAwesomeIcons.at,
-          color: Colors.black,
-          size: Sizes.size20 + 10,
+        title: SvgPicture.asset(
+          'assets/icons/threads-icon.svg',
+          width: 40,
+          height: 40,
         ),
         leadingWidth: 100,
         backgroundColor: Theme.of(context).secondaryHeaderColor,
