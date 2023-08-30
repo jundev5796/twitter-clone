@@ -27,7 +27,7 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
       ),
       child: Column(
         children: [
-          Gaps.v2,
+          Gaps.v10,
           Container(
             margin: const EdgeInsets.symmetric(vertical: 8.0),
             width: 50.0,
@@ -35,6 +35,83 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
             decoration: BoxDecoration(
               color: Colors.grey[300],
               borderRadius: BorderRadius.circular(2.0),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: Sizes.size12,
+              horizontal: Sizes.size20,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5F5F5),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(7.0),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        "Unfollow",
+                        style: TextStyle(
+                          fontSize: Sizes.size16 + Sizes.size1,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Divider(),
+                    ListTile(
+                      title: Text(
+                        "Mute",
+                        style: TextStyle(
+                          fontSize: Sizes.size16 + Sizes.size1,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: Sizes.size12,
+              horizontal: Sizes.size20,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5F5F5),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(7.0),
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        "Hide",
+                        style: TextStyle(
+                          fontSize: Sizes.size16 + Sizes.size1,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Divider(),
+                    ListTile(
+                      title: Text(
+                        "Report",
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: Sizes.size16 + Sizes.size1,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
