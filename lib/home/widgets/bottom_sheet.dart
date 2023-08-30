@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
+import 'package:twitter_clone/home/widgets/bottom_sheet_report.dart';
 
 class BottomSheetModal extends StatefulWidget {
   const BottomSheetModal({super.key});
@@ -10,6 +11,15 @@ class BottomSheetModal extends StatefulWidget {
 }
 
 class _BottomSheetModalState extends State<BottomSheetModal> {
+  void _onReportTap(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => const ReportModal(),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -86,11 +96,11 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
                 color: const Color(0xFFF5F5F5),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(7.0),
+              child: Padding(
+                padding: const EdgeInsets.all(7.0),
                 child: Column(
                   children: [
-                    ListTile(
+                    const ListTile(
                       title: Text(
                         "Hide",
                         style: TextStyle(
@@ -99,14 +109,17 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
                         ),
                       ),
                     ),
-                    Divider(),
-                    ListTile(
-                      title: Text(
-                        "Report",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: Sizes.size16 + Sizes.size1,
-                          fontWeight: FontWeight.w600,
+                    const Divider(),
+                    GestureDetector(
+                      onTap: () => _onReportTap(context),
+                      child: const ListTile(
+                        title: Text(
+                          "Report",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: Sizes.size16 + Sizes.size1,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
