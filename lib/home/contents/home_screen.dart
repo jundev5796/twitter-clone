@@ -2,10 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
+import 'package:twitter_clone/home/widgets/bottom_sheet.dart';
 import 'package:twitter_clone/home/widgets/multi_avatar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  void _onBottomSheetsTap(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => const BottomSheetModal(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,10 +121,13 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Gaps.h20,
-                                const Text(
-                                  "···",
-                                  style: TextStyle(
-                                    fontSize: 20,
+                                GestureDetector(
+                                  onTap: () => _onBottomSheetsTap(context),
+                                  child: const Text(
+                                    "···",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                               ],
