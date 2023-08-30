@@ -13,6 +13,7 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 400,
       clipBehavior: Clip.hardEdge,
       decoration: const BoxDecoration(
         color: Colors.white, // You need to specify a color here.
