@@ -17,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     showModalBottomSheet(
       context: context,
       builder: (context) => const BottomSheetModal(),
+      backgroundColor: Colors.transparent,
     );
   }
 
