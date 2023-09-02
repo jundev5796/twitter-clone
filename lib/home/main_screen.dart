@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/sizes.dart';
+import 'package:twitter_clone/home/contents/activity/activity_screen.dart';
 import 'package:twitter_clone/home/contents/home_screen.dart';
 import 'package:twitter_clone/home/contents/search/search_screen.dart';
 import 'package:twitter_clone/home/contents/widgets/write_modal.dart';
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _selectedIndex != 1
+      appBar: _selectedIndex != 1 && _selectedIndex != 3
           ? AppBar(
               title: SvgPicture.asset(
                 'assets/icons/threads-icon.svg',
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<MainScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 1,
-            child: SearchScreen(),
+            child: const SearchScreen(),
           ),
           // Offstage(
           //   offstage: !_isModalVisible,
@@ -68,7 +69,7 @@ class _HomeScreenState extends State<MainScreen> {
           // ),
           Offstage(
             offstage: _selectedIndex != 3,
-            child: const PlaceholderWidget(text: "Notification"),
+            child: const ActivityScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 4,
