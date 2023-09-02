@@ -60,7 +60,7 @@ class _HomeScreenState extends State<MainScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 1,
-            child: const SearchScreen(),
+            child: SearchScreen(),
           ),
           // Offstage(
           //   offstage: !_isModalVisible,
