@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/home_screen.dart';
+import 'package:twitter_clone/home/contents/search/search_screen.dart';
 import 'package:twitter_clone/home/contents/widgets/write_modal.dart';
 import 'package:twitter_clone/home/widgets/nav_tab.dart';
 import 'package:twitter_clone/home/widgets/placeholder.dart';
@@ -39,16 +40,18 @@ class _HomeScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: SvgPicture.asset(
-          'assets/icons/threads-icon.svg',
-          width: 40,
-          height: 40,
-        ),
-        leadingWidth: 100,
-        backgroundColor: Theme.of(context).secondaryHeaderColor,
-        elevation: 0,
-      ),
+      appBar: _selectedIndex != 1
+          ? AppBar(
+              title: SvgPicture.asset(
+                'assets/icons/threads-icon.svg',
+                width: 40,
+                height: 40,
+              ),
+              leadingWidth: 100,
+              backgroundColor: Theme.of(context).secondaryHeaderColor,
+              elevation: 0,
+            )
+          : null,
       body: Stack(
         children: [
           Offstage(
@@ -57,7 +60,7 @@ class _HomeScreenState extends State<MainScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 1,
-            child: const PlaceholderWidget(text: "Search"),
+            child: const SearchScreen(),
           ),
           // Offstage(
           //   offstage: !_isModalVisible,
@@ -77,7 +80,7 @@ class _HomeScreenState extends State<MainScreen> {
         color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: Sizes.size64,
+            vertical: Sizes.size16,
             horizontal: Sizes.size12,
           ),
           child: Row(
