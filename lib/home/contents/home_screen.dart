@@ -305,10 +305,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 Gaps.h20,
-                                const Text(
-                                  "···",
-                                  style: TextStyle(
-                                    fontSize: 20,
+                                GestureDetector(
+                                  onTap: () => _onBottomSheetsTap(context),
+                                  child: const Text(
+                                    "···",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -454,10 +457,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 Gaps.h20,
-                                const Text(
-                                  "···",
-                                  style: TextStyle(
-                                    fontSize: 20,
+                                GestureDetector(
+                                  onTap: () => _onBottomSheetsTap(context),
+                                  child: const Text(
+                                    "···",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -629,10 +635,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 Gaps.h20,
-                                const Text(
-                                  "···",
-                                  style: TextStyle(
-                                    fontSize: 20,
+                                GestureDetector(
+                                  onTap: () => _onBottomSheetsTap(context),
+                                  child: const Text(
+                                    "···",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -778,10 +787,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 Gaps.h20,
-                                const Text(
-                                  "···",
-                                  style: TextStyle(
-                                    fontSize: 20,
+                                GestureDetector(
+                                  onTap: () => _onBottomSheetsTap(context),
+                                  child: const Text(
+                                    "···",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                               ],

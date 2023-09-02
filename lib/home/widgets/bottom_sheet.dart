@@ -11,13 +11,16 @@ class BottomSheetModal extends StatefulWidget {
 }
 
 class _BottomSheetModalState extends State<BottomSheetModal> {
-  void _onReportTap(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => const ReportModal(),
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-    );
+  void _onReportTap(BuildContext modalContext, BuildContext parentContext) {
+    Navigator.pop(modalContext);
+    Future.delayed(const Duration(milliseconds: 300), () {
+      showModalBottomSheet(
+        context: parentContext,
+        builder: (context) => const ReportModal(),
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+      );
+    });
   }
 
   @override
@@ -111,7 +114,10 @@ class _BottomSheetModalState extends State<BottomSheetModal> {
                     ),
                     const Divider(),
                     GestureDetector(
-                      onTap: () => _onReportTap(context),
+                      onTap: () => _onReportTap(
+                        context,
+                        Navigator.of(context).context,
+                      ),
                       child: const ListTile(
                         title: Text(
                           "Report",

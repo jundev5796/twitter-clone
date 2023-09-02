@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/home_screen.dart';
+import 'package:twitter_clone/home/contents/widgets/write_modal.dart';
 import 'package:twitter_clone/home/widgets/nav_tab.dart';
 import 'package:twitter_clone/home/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,6 +21,18 @@ class _HomeScreenState extends State<MainScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _onWriteTap(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => const WriteModal(),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+    );
   }
 
   @override
@@ -47,10 +59,10 @@ class _HomeScreenState extends State<MainScreen> {
             offstage: _selectedIndex != 1,
             child: const PlaceholderWidget(text: "Search"),
           ),
-          Offstage(
-            offstage: _selectedIndex != 2,
-            child: const PlaceholderWidget(text: "Tread"),
-          ),
+          // Offstage(
+          //   offstage: !_isModalVisible,
+          //   child: const WriteModal(),
+          // ),
           Offstage(
             offstage: _selectedIndex != 3,
             child: const PlaceholderWidget(text: "Notification"),
@@ -65,7 +77,7 @@ class _HomeScreenState extends State<MainScreen> {
         color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: Sizes.size16,
+            vertical: Sizes.size64,
             horizontal: Sizes.size12,
           ),
           child: Row(
@@ -84,7 +96,9 @@ class _HomeScreenState extends State<MainScreen> {
               NavTab(
                 isSelected: _selectedIndex == 2,
                 icon: FontAwesomeIcons.penToSquare,
-                onTap: () => _onTap(2),
+                onTap: () {
+                  _onWriteTap(context);
+                },
               ),
               NavTab(
                 isSelected: _selectedIndex == 3,
