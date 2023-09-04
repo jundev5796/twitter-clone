@@ -3,10 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/activity/activity_screen.dart';
 import 'package:twitter_clone/home/contents/home_screen.dart';
+import 'package:twitter_clone/home/contents/profile/profile_screen.dart';
 import 'package:twitter_clone/home/contents/search/search_screen.dart';
 import 'package:twitter_clone/home/contents/widgets/write_modal.dart';
 import 'package:twitter_clone/home/widgets/nav_tab.dart';
-import 'package:twitter_clone/home/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MainScreen extends StatefulWidget {
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: _selectedIndex != 1 && _selectedIndex != 3
+      appBar: _selectedIndex != 1 && _selectedIndex != 3 && _selectedIndex != 4
           ? AppBar(
               title: SvgPicture.asset(
                 'assets/icons/threads-icon.svg',
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<MainScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 4,
-            child: const PlaceholderWidget(text: "Profile"),
+            child: const ProfileScreen(),
           ),
         ],
       ),
