@@ -140,6 +140,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
+                Gaps.v32,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: Sizes.size10,
+                        horizontal: Sizes.size44,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey.shade400,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Text(
+                        "Edit profile",
+                        style: TextStyle(
+                          fontSize: Sizes.size16 + Sizes.size1,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: Sizes.size10,
+                        horizontal: Sizes.size44,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey.shade400,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Text(
+                        "Share profile",
+                        style: TextStyle(
+                          fontSize: Sizes.size16 + Sizes.size1,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
