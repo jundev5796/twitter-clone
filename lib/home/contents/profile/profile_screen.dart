@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
+import 'package:twitter_clone/home/contents/profile/settings_screen.dart';
 import 'package:twitter_clone/home/contents/profile/widgets/persistent_tabbar.dart';
 import 'package:twitter_clone/home/contents/profile/widgets/tab_replies.dart';
 import 'package:twitter_clone/home/contents/profile/widgets/tab_threads.dart';
@@ -14,6 +15,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  void _onSettingsTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SettingsScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: _onSettingsTap,
                     icon: const Icon(
                       Icons.segment,
                       color: Colors.black,
