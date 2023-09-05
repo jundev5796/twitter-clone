@@ -191,7 +191,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                       ),
-                      Gaps.v16,
+                      Gaps.v4,
                     ],
                   ),
                 ),
