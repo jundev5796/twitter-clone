@@ -16,194 +16,199 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            backgroundColor: Colors.white,
-            leading: const Icon(
-              Icons.language,
-              color: Colors.black,
-              size: Sizes.size32,
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const FaIcon(
-                  FontAwesomeIcons.instagram,
+    return SafeArea(
+      child: DefaultTabController(
+        length: 2,
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                backgroundColor: Colors.white,
+                leading: const Icon(
+                  Icons.language,
                   color: Colors.black,
                   size: Sizes.size32,
                 ),
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const FaIcon(
+                      FontAwesomeIcons.instagram,
+                      color: Colors.black,
+                      size: Sizes.size32,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.segment,
+                      color: Colors.black,
+                      size: Sizes.size32,
+                    ),
+                  ),
+                ],
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.segment,
-                  color: Colors.black,
-                  size: Sizes.size32,
-                ),
-              ),
-            ],
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Row(
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
                     children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Jun",
-                              style: TextStyle(
-                                fontSize: Sizes.size28,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Row(
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  "jun_gamer",
+                                  "Jun",
                                   style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: Sizes.size16 + Sizes.size1,
+                                    fontSize: Sizes.size28,
+                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                Gaps.h4,
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: Sizes.size8,
-                                    horizontal: Sizes.size8,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFF5F6F6),
-                                    borderRadius: BorderRadius.circular(40),
-                                  ),
-                                  child: Text(
-                                    "threads.net",
-                                    style: TextStyle(
-                                      color: Colors.grey.shade500,
+                                Row(
+                                  children: [
+                                    const Text(
+                                      "jun_gamer",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: Sizes.size16 + Sizes.size1,
+                                      ),
                                     ),
-                                  ),
+                                    Gaps.h4,
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: Sizes.size8,
+                                        horizontal: Sizes.size8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFF5F6F6),
+                                        borderRadius: BorderRadius.circular(40),
+                                      ),
+                                      child: Text(
+                                        "threads.net",
+                                        style: TextStyle(
+                                          color: Colors.grey.shade500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 16.0),
-                        width: 65,
-                        height: 65,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.contain,
-                            image: NetworkImage(
-                                "https://avatars.githubusercontent.com/u/69138182?v=4"),
                           ),
-                        ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 16.0),
+                            width: 65,
+                            height: 65,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                fit: BoxFit.contain,
+                                image: NetworkImage(
+                                    "https://avatars.githubusercontent.com/u/69138182?v=4"),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+                      Gaps.v14,
+                      const Row(
+                        children: [
+                          Text(
+                            "Game enthusiast!",
+                            style: TextStyle(
+                              fontSize: Sizes.size16,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Gaps.v24,
+                      Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 12,
+                            foregroundImage: NetworkImage(
+                                "https://avatars.githubusercontent.com/u/1?v=4"),
+                          ),
+                          const CircleAvatar(
+                            radius: 12,
+                            foregroundImage: NetworkImage(
+                                "https://avatars.githubusercontent.com/u/3612017?v=4"),
+                          ),
+                          Gaps.h14,
+                          Text(
+                            "2 followers",
+                            style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: Sizes.size18,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Gaps.v32,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Sizes.size10,
+                              horizontal: Sizes.size44,
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey.shade400,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Text(
+                              "Edit profile",
+                              style: TextStyle(
+                                fontSize: Sizes.size16 + Sizes.size1,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Sizes.size10,
+                              horizontal: Sizes.size44,
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey.shade400,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Text(
+                              "Share profile",
+                              style: TextStyle(
+                                fontSize: Sizes.size16 + Sizes.size1,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Gaps.v16,
                     ],
                   ),
-                  Gaps.v14,
-                  const Row(
-                    children: [
-                      Text(
-                        "Game enthusiast!",
-                        style: TextStyle(
-                          fontSize: Sizes.size16,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Gaps.v24,
-                  Row(
-                    children: [
-                      const CircleAvatar(
-                        radius: 12,
-                        foregroundImage: NetworkImage(
-                            "https://avatars.githubusercontent.com/u/1?v=4"),
-                      ),
-                      const CircleAvatar(
-                        radius: 12,
-                        foregroundImage: NetworkImage(
-                            "https://avatars.githubusercontent.com/u/3612017?v=4"),
-                      ),
-                      Gaps.h14,
-                      Text(
-                        "2 followers",
-                        style: TextStyle(
-                          color: Colors.grey.shade500,
-                          fontSize: Sizes.size18,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Gaps.v32,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Sizes.size10,
-                          horizontal: Sizes.size44,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.shade400,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Text(
-                          "Edit profile",
-                          style: TextStyle(
-                            fontSize: Sizes.size16 + Sizes.size1,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Sizes.size10,
-                          horizontal: Sizes.size44,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey.shade400,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Text(
-                          "Share profile",
-                          style: TextStyle(
-                            fontSize: Sizes.size16 + Sizes.size1,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Gaps.v16,
-                ],
+                ),
               ),
-            ),
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: PersistentTabBar(),
+              ),
+            ];
+          },
+          body: const TabBarView(
+            children: [
+              TabThreads(),
+              TabReplies(),
+            ],
           ),
-          SliverPersistentHeader(delegate: PersistentTabBar()),
-          const SliverFillRemaining(
-            child: TabBarView(
-              children: [
-                TabThreads(),
-                TabReplies(),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

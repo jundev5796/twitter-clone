@@ -37,7 +37,7 @@ class TabThreads extends StatelessWidget {
             time: "1d",
           ),
           ThreadsPost(
-            description: "Hope you guys have another great week!",
+            description: "Hope you guys have a great week!",
             time: "3d",
           ),
         ],

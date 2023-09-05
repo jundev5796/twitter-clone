@@ -5,27 +5,31 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return const TabBar(
-      indicatorWeight: 0.8,
-      indicatorColor: Colors.black,
-      labelPadding: EdgeInsets.only(
-        bottom: Sizes.size14,
+    return Container(
+      color: Colors.white,
+      height: 50,
+      child: const TabBar(
+        indicatorWeight: 0.8,
+        indicatorColor: Colors.black,
+        labelPadding: EdgeInsets.only(
+          bottom: Sizes.size14,
+        ),
+        labelColor: Colors.black,
+        tabs: [
+          Text(
+            "Threads",
+            style: TextStyle(
+              fontSize: Sizes.size16 + Sizes.size1,
+            ),
+          ),
+          Text(
+            "Replies",
+            style: TextStyle(
+              fontSize: Sizes.size16 + Sizes.size1,
+            ),
+          ),
+        ],
       ),
-      labelColor: Colors.black,
-      tabs: [
-        Text(
-          "Threads",
-          style: TextStyle(
-            fontSize: Sizes.size16 + Sizes.size1,
-          ),
-        ),
-        Text(
-          "Replies",
-          style: TextStyle(
-            fontSize: Sizes.size16 + Sizes.size1,
-          ),
-        ),
-      ],
     );
   }
 
