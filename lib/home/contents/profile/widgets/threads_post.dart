@@ -18,7 +18,12 @@ class ThreadsPost extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+          padding: const EdgeInsets.only(
+            top: 20,
+            bottom: 10,
+            left: 14,
+            right: 14,
+          ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

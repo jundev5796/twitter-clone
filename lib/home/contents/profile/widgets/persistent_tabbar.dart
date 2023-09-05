@@ -12,7 +12,7 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
         indicatorWeight: 0.8,
         indicatorColor: Colors.black,
         labelPadding: EdgeInsets.only(
-          bottom: Sizes.size14,
+          bottom: Sizes.size4,
         ),
         labelColor: Colors.black,
         tabs: [
