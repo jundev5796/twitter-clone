@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/profile/widgets/persistent_tabbar.dart';
+import 'package:twitter_clone/home/contents/profile/widgets/tab_replies.dart';
+import 'package:twitter_clone/home/contents/profile/widgets/tab_threads.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -193,6 +195,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           SliverPersistentHeader(delegate: PersistentTabBar()),
+          const SliverFillRemaining(
+            child: TabBarView(
+              children: [
+                TabThreads(),
+                TabReplies(),
+              ],
+            ),
+          ),
         ],
       ),
     );
