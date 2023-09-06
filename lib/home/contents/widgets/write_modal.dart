@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:twitter_clone/camera/camera_screen.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
@@ -26,6 +27,14 @@ class _WriteModalState extends State<WriteModal> {
         _isTextFieldEmpty = _controller.text.isEmpty;
       });
     });
+  }
+
+  void _onAttachTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const CameraScreen(),
+      ),
+    );
   }
 
   @override
@@ -127,9 +136,12 @@ class _WriteModalState extends State<WriteModal> {
                           ),
                         ),
                         Gaps.v8,
-                        FaIcon(
-                          FontAwesomeIcons.paperclip,
-                          color: Colors.grey.shade400,
+                        GestureDetector(
+                          onTap: _onAttachTap,
+                          child: FaIcon(
+                            FontAwesomeIcons.paperclip,
+                            color: Colors.grey.shade400,
+                          ),
                         ),
                       ],
                     ),
