@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:twitter_clone/constants/gaps.dart';
+import 'package:twitter_clone/constants/sizes.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -56,7 +58,24 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Container(),
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: !_hasPermission || !_cameraController.value.isInitialized
+            ? const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Initializing...",
+                    style:
+                        TextStyle(color: Colors.white, fontSize: Sizes.size20),
+                  ),
+                  Gaps.v20,
+                  CircularProgressIndicator.adaptive()
+                ],
+              )
+            : CameraPreview(_cameraController),
+      ),
     );
   }
 }
