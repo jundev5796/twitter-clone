@@ -1,3 +1,5 @@
+import 'package:gallery_saver/gallery_saver.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -20,6 +22,8 @@ class _CameraScreenState extends State<CameraScreen> {
   late FlashMode _flashMode;
 
   late CameraController _cameraController;
+
+  final _picker = ImagePicker();
 
   Future<void> initCamera() async {
     try {
@@ -83,7 +87,33 @@ class _CameraScreenState extends State<CameraScreen> {
     XFile file = await _cameraController.takePicture();
     String imagePath = file.path;
 
+    // Request storage permission
+    bool hasStoragePermission = await _requestStoragePermission();
+    if (hasStoragePermission) {
+      // Save the image to the gallery
+      GallerySaver.saveImage(imagePath).then((bool? success) {
+        print("Image is saved to Gallery : $success");
+      });
+    } else {
+      print("Storage permission denied. Cannot save image to gallery.");
+    }
+
     Navigator.of(context).pop(imagePath);
+  }
+
+  Future<void> _pickImageFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      Navigator.of(context).pop(pickedFile.path);
+    }
+  }
+
+  Future<bool> _requestStoragePermission() async {
+    var status = await Permission.storage.status;
+    if (status.isDenied) {
+      status = await Permission.storage.request();
+    }
+    return status.isGranted;
   }
 
   @override
@@ -191,6 +221,27 @@ class _CameraScreenState extends State<CameraScreen> {
                                 ),
                           ),
                         ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      color: Colors.black.withOpacity(
+                          0.6), // Optional: To give a slight background for better visibility
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text("Camera",
+                              style: TextStyle(color: Colors.white)),
+                          GestureDetector(
+                              onTap: _pickImageFromGallery,
+                              child: const Text("Library",
+                                  style: TextStyle(color: Colors.white)))
+                        ],
                       ),
                     ),
                   ),
