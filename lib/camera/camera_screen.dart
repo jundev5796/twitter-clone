@@ -84,13 +84,25 @@ class _CameraScreenState extends State<CameraScreen> {
                   CameraPreview(_cameraController),
                   Positioned(
                     top: Sizes.size20,
-                    left: Sizes.size20,
-                    child: IconButton(
-                      color: Colors.white,
-                      onPressed: _toggleSelfieMode,
-                      icon: const Icon(
-                        Icons.cameraswitch,
-                      ),
+                    right: Sizes.size20,
+                    child: Column(
+                      children: [
+                        IconButton(
+                          color: Colors.white,
+                          onPressed: _toggleSelfieMode,
+                          icon: const Icon(
+                            Icons.cameraswitch,
+                          ),
+                        ),
+                        Gaps.v10,
+                        IconButton(
+                          color: Colors.white,
+                          onPressed: _toggleSelfieMode,
+                          icon: const Icon(
+                            Icons.flash_off_rounded,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
