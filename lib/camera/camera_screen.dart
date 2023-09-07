@@ -69,6 +69,8 @@ class _CameraScreenState extends State<CameraScreen> {
     setState(() {});
   }
 
+  void _onTapCamera() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,8 +96,23 @@ class _CameraScreenState extends State<CameraScreen> {
                 children: [
                   CameraPreview(_cameraController),
                   Positioned(
-                    top: Sizes.size20,
-                    right: Sizes.size20,
+                    top: MediaQuery.of(context).padding.top + 20,
+                    left: 10,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.chevron_left,
+                        color: Colors.white,
+                        size: Sizes.size36,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(
+                            context); // Navigates back to the previous screen
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    bottom: Sizes.size44 + Sizes.size2,
+                    right: Sizes.size56,
                     child: Column(
                       children: [
                         IconButton(
@@ -105,35 +122,55 @@ class _CameraScreenState extends State<CameraScreen> {
                             Icons.cameraswitch,
                           ),
                         ),
-                        Gaps.v10,
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    bottom: Sizes.size44,
+                    left: Sizes.size56,
+                    child: Column(
+                      children: [
                         FlashOptions(
                           currentFlashMode: _flashMode,
                           flashMode: FlashMode.off,
                           setFlashMode: _setFlashMode,
                           icon: Icons.flash_off_rounded,
                         ),
-                        Gaps.v10,
-                        FlashOptions(
-                          currentFlashMode: _flashMode,
-                          flashMode: FlashMode.always,
-                          setFlashMode: _setFlashMode,
-                          icon: Icons.flash_on_rounded,
-                        ),
-                        Gaps.v10,
-                        FlashOptions(
-                          currentFlashMode: _flashMode,
-                          flashMode: FlashMode.auto,
-                          setFlashMode: _setFlashMode,
-                          icon: Icons.flash_auto_rounded,
-                        ),
-                        Gaps.v10,
-                        FlashOptions(
-                          currentFlashMode: _flashMode,
-                          flashMode: FlashMode.torch,
-                          setFlashMode: _setFlashMode,
-                          icon: Icons.flashlight_on_rounded,
-                        ),
                       ],
+                    ),
+                  ),
+                  Positioned(
+                    bottom: Sizes.size40,
+                    child: GestureDetector(
+                      onTap: _onTapCamera,
+                      child: Container(
+                        width: Sizes.size64 +
+                            Sizes
+                                .size4, // Considering 2 pixels for border, 2 pixels for gap, and 60 pixels for inner circle
+                        height: Sizes.size64 + Sizes.size4,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white,
+                            width:
+                                2.0, // This determines the thickness of the border
+                          ),
+                          color: Colors.transparent, // Making it transparent
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(
+                              2.0), // This provides the transparent gap
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            child: const Center(
+                                // You can put your tappable function or button here.
+                                ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -142,3 +179,32 @@ class _CameraScreenState extends State<CameraScreen> {
     );
   }
 }
+
+// Gaps.v10,
+                        // FlashOptions(
+                        //   currentFlashMode: _flashMode,
+                        //   flashMode: FlashMode.off,
+                        //   setFlashMode: _setFlashMode,
+                        //   icon: Icons.flash_off_rounded,
+                        // ),
+                        // Gaps.v10,
+                        // FlashOptions(
+                        //   currentFlashMode: _flashMode,
+                        //   flashMode: FlashMode.always,
+                        //   setFlashMode: _setFlashMode,
+                        //   icon: Icons.flash_on_rounded,
+                        // ),
+                        // Gaps.v10,
+                        // FlashOptions(
+                        //   currentFlashMode: _flashMode,
+                        //   flashMode: FlashMode.auto,
+                        //   setFlashMode: _setFlashMode,
+                        //   icon: Icons.flash_auto_rounded,
+                        // ),
+                        // Gaps.v10,
+                        // FlashOptions(
+                        //   currentFlashMode: _flashMode,
+                        //   flashMode: FlashMode.torch,
+                        //   setFlashMode: _setFlashMode,
+                        //   icon: Icons.flashlight_on_rounded,
+                        // ),
