@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:twitter_clone/camera/widgets/flash_options.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
@@ -105,41 +106,32 @@ class _CameraScreenState extends State<CameraScreen> {
                           ),
                         ),
                         Gaps.v10,
-                        IconButton(
-                          color: _flashMode == FlashMode.off
-                              ? Colors.amber.shade200
-                              : Colors.white,
-                          onPressed: () => _setFlashMode(FlashMode.off),
-                          icon: const Icon(
-                            Icons.flash_off_rounded,
-                          ),
+                        FlashOptions(
+                          currentFlashMode: _flashMode,
+                          flashMode: FlashMode.off,
+                          setFlashMode: _setFlashMode,
+                          icon: Icons.flash_off_rounded,
                         ),
-                        IconButton(
-                          color: _flashMode == FlashMode.always
-                              ? Colors.amber.shade200
-                              : Colors.white,
-                          onPressed: () => _setFlashMode(FlashMode.always),
-                          icon: const Icon(
-                            Icons.flash_on_rounded,
-                          ),
+                        Gaps.v10,
+                        FlashOptions(
+                          currentFlashMode: _flashMode,
+                          flashMode: FlashMode.always,
+                          setFlashMode: _setFlashMode,
+                          icon: Icons.flash_on_rounded,
                         ),
-                        IconButton(
-                          color: _flashMode == FlashMode.auto
-                              ? Colors.amber.shade200
-                              : Colors.white,
-                          onPressed: () => _setFlashMode(FlashMode.auto),
-                          icon: const Icon(
-                            Icons.flash_auto_rounded,
-                          ),
+                        Gaps.v10,
+                        FlashOptions(
+                          currentFlashMode: _flashMode,
+                          flashMode: FlashMode.auto,
+                          setFlashMode: _setFlashMode,
+                          icon: Icons.flash_auto_rounded,
                         ),
-                        IconButton(
-                          color: _flashMode == FlashMode.torch
-                              ? Colors.amber.shade200
-                              : Colors.white,
-                          onPressed: () => _setFlashMode(FlashMode.torch),
-                          icon: const Icon(
-                            Icons.flashlight_on_rounded,
-                          ),
+                        Gaps.v10,
+                        FlashOptions(
+                          currentFlashMode: _flashMode,
+                          flashMode: FlashMode.torch,
+                          setFlashMode: _setFlashMode,
+                          icon: Icons.flashlight_on_rounded,
                         ),
                       ],
                     ),
