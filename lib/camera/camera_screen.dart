@@ -102,6 +102,27 @@ class _CameraScreenState extends State<CameraScreen> {
                             Icons.flash_off_rounded,
                           ),
                         ),
+                        IconButton(
+                          color: Colors.white,
+                          onPressed: _toggleSelfieMode,
+                          icon: const Icon(
+                            Icons.flash_on_rounded,
+                          ),
+                        ),
+                        IconButton(
+                          color: Colors.white,
+                          onPressed: _toggleSelfieMode,
+                          icon: const Icon(
+                            Icons.flash_auto_rounded,
+                          ),
+                        ),
+                        IconButton(
+                          color: Colors.white,
+                          onPressed: _toggleSelfieMode,
+                          icon: const Icon(
+                            Icons.flashlight_on_rounded,
+                          ),
+                        ),
                       ],
                     ),
                   ),
