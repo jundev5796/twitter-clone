@@ -230,7 +230,6 @@ class _CameraScreenState extends State<CameraScreen> {
                     right: 0,
                     child: Container(
                       color: Colors.transparent,
-                      // Optional: To give a slight background for better visibility
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
