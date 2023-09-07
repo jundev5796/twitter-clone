@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_clone/camera/camera_screen.dart';
+import 'package:twitter_clone/home/main_screen.dart';
 
 void main() {
   runApp(const TwitterApp());
@@ -18,7 +18,7 @@ class TwitterApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         secondaryHeaderColor: Colors.white,
       ),
-      home: const CameraScreen(),
+      home: const MainScreen(),
     );
   }
 }

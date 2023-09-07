@@ -22,19 +22,25 @@ class _CameraScreenState extends State<CameraScreen> {
   late CameraController _cameraController;
 
   Future<void> initCamera() async {
-    final cameras = await availableCameras();
-    if (cameras.isEmpty) {
-      return;
+    try {
+      final cameras = await availableCameras();
+      if (cameras.isEmpty) {
+        // Handle no camera error
+        return;
+      }
+
+      _cameraController = CameraController(
+        cameras[_isSelfieMode ? 1 : 0],
+        ResolutionPreset.ultraHigh,
+      );
+
+      await _cameraController.initialize();
+
+      _flashMode = _cameraController.value.flashMode;
+    } catch (e) {
+      print('Camera Initialization Error: $e');
+      // Handle the error
     }
-
-    _cameraController = CameraController(
-      cameras[_isSelfieMode ? 1 : 0],
-      ResolutionPreset.ultraHigh,
-    );
-
-    await _cameraController.initialize();
-
-    _flashMode = _cameraController.value.flashMode;
   }
 
   Future<void> initPermissions() async {
@@ -69,7 +75,22 @@ class _CameraScreenState extends State<CameraScreen> {
     setState(() {});
   }
 
-  void _onTapCamera() {}
+  Future<void> _onTapCamera() async {
+    if (!_cameraController.value.isInitialized) {
+      return;
+    }
+
+    XFile file = await _cameraController.takePicture();
+    String imagePath = file.path;
+
+    Navigator.of(context).pop(imagePath);
+  }
+
+  @override
+  void dispose() {
+    _cameraController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

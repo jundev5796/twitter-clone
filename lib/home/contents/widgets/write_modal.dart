@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/camera/camera_screen.dart';
@@ -14,6 +15,7 @@ class WriteModal extends StatefulWidget {
 class _WriteModalState extends State<WriteModal> {
   final _controller = TextEditingController();
   bool _isTextFieldEmpty = true;
+  String? _takenImagePath;
 
   void _onCancelTap() {
     Navigator.of(context).pop();
@@ -29,12 +31,18 @@ class _WriteModalState extends State<WriteModal> {
     });
   }
 
-  void _onAttachTap() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
+  void _onAttachTap() async {
+    final imagePath = await Navigator.of(context).push(
+      MaterialPageRoute<String>(
         builder: (context) => const CameraScreen(),
       ),
     );
+
+    if (imagePath != null && imagePath.isNotEmpty) {
+      setState(() {
+        _takenImagePath = imagePath;
+      });
+    }
   }
 
   @override
@@ -143,6 +151,16 @@ class _WriteModalState extends State<WriteModal> {
                             color: Colors.grey.shade400,
                           ),
                         ),
+                        // Check if the image path is not null and display the image.
+                        if (_takenImagePath != null) ...[
+                          Gaps.v8,
+                          Image.file(
+                            File(_takenImagePath!),
+                            // You can adjust the width and height as needed
+                            height: 300,
+                            fit: BoxFit.contain,
+                          )
+                        ],
                       ],
                     ),
                   ),
