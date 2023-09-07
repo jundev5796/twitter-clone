@@ -16,6 +16,8 @@ class _CameraScreenState extends State<CameraScreen> {
 
   bool _isSelfieMode = false;
 
+  late FlashMode _flashMode;
+
   late CameraController _cameraController;
 
   Future<void> initCamera() async {
@@ -30,6 +32,8 @@ class _CameraScreenState extends State<CameraScreen> {
     );
 
     await _cameraController.initialize();
+
+    _flashMode = _cameraController.value.flashMode;
   }
 
   Future<void> initPermissions() async {
@@ -55,6 +59,12 @@ class _CameraScreenState extends State<CameraScreen> {
   Future<void> _toggleSelfieMode() async {
     _isSelfieMode = !_isSelfieMode;
     await initCamera();
+    setState(() {});
+  }
+
+  Future<void> _setFlashMode(FlashMode newFlashMode) async {
+    await _cameraController.setFlashMode(newFlashMode);
+    _flashMode = newFlashMode;
     setState(() {});
   }
 
@@ -96,29 +106,37 @@ class _CameraScreenState extends State<CameraScreen> {
                         ),
                         Gaps.v10,
                         IconButton(
-                          color: Colors.white,
-                          onPressed: _toggleSelfieMode,
+                          color: _flashMode == FlashMode.off
+                              ? Colors.amber.shade200
+                              : Colors.white,
+                          onPressed: () => _setFlashMode(FlashMode.off),
                           icon: const Icon(
                             Icons.flash_off_rounded,
                           ),
                         ),
                         IconButton(
-                          color: Colors.white,
-                          onPressed: _toggleSelfieMode,
+                          color: _flashMode == FlashMode.always
+                              ? Colors.amber.shade200
+                              : Colors.white,
+                          onPressed: () => _setFlashMode(FlashMode.always),
                           icon: const Icon(
                             Icons.flash_on_rounded,
                           ),
                         ),
                         IconButton(
-                          color: Colors.white,
-                          onPressed: _toggleSelfieMode,
+                          color: _flashMode == FlashMode.auto
+                              ? Colors.amber.shade200
+                              : Colors.white,
+                          onPressed: () => _setFlashMode(FlashMode.auto),
                           icon: const Icon(
                             Icons.flash_auto_rounded,
                           ),
                         ),
                         IconButton(
-                          color: Colors.white,
-                          onPressed: _toggleSelfieMode,
+                          color: _flashMode == FlashMode.torch
+                              ? Colors.amber.shade200
+                              : Colors.white,
+                          onPressed: () => _setFlashMode(FlashMode.torch),
                           icon: const Icon(
                             Icons.flashlight_on_rounded,
                           ),
