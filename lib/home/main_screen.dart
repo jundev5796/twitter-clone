@@ -49,7 +49,6 @@ class _HomeScreenState extends State<MainScreen> {
                 height: 40,
               ),
               leadingWidth: 100,
-              backgroundColor: Theme.of(context).secondaryHeaderColor,
               elevation: 0,
             )
           : null,
