@@ -48,6 +48,9 @@ class TwitterApp extends StatelessWidget {
           labelColor: Colors.white,
           indicatorColor: Colors.white,
         ),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
       ),
       home: const MainScreen(),
     );

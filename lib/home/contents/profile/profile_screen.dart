@@ -25,6 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SafeArea(
       child: DefaultTabController(
         length: 2,
@@ -32,26 +33,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                backgroundColor: Colors.white,
-                leading: const Icon(
+                leading: Icon(
                   Icons.language,
-                  color: Colors.black,
+                  color: isDarkMode ? Colors.white : Colors.black,
                   size: Sizes.size32,
                 ),
                 actions: [
                   IconButton(
                     onPressed: () {},
-                    icon: const FaIcon(
+                    icon: FaIcon(
                       FontAwesomeIcons.instagram,
-                      color: Colors.black,
+                      color: isDarkMode ? Colors.white : Colors.black,
                       size: Sizes.size32,
                     ),
                   ),
                   IconButton(
                     onPressed: _onSettingsTap,
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.segment,
-                      color: Colors.black,
+                      color: isDarkMode ? Colors.white : Colors.black,
                       size: Sizes.size32,
                     ),
                   ),
@@ -78,10 +78,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                                 Row(
                                   children: [
-                                    const Text(
+                                    Text(
                                       "jun_gamer",
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: isDarkMode
+                                            ? Colors.white
+                                            : Colors.black,
                                         fontSize: Sizes.size16 + Sizes.size1,
                                       ),
                                     ),
@@ -92,13 +94,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         horizontal: Sizes.size8,
                                       ),
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFF5F6F6),
+                                        color: isDarkMode
+                                            ? Colors.grey.shade400
+                                            : const Color(0xFFF5F6F6),
                                         borderRadius: BorderRadius.circular(40),
                                       ),
                                       child: Text(
                                         "threads.net",
                                         style: TextStyle(
-                                          color: Colors.grey.shade500,
+                                          color: isDarkMode
+                                              ? Colors.grey.shade800
+                                              : Colors.grey.shade500,
                                         ),
                                       ),
                                     ),
