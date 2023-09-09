@@ -84,7 +84,6 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120.0),
         child: AppBar(
-          backgroundColor: Colors.white,
           elevation: 0,
           leading: const SizedBox.shrink(),
           titleSpacing: 0,
@@ -98,7 +97,6 @@ class _SearchScreenState extends State<SearchScreen> {
                   Text(
                     "Search",
                     style: TextStyle(
-                      color: Colors.black,
                       fontSize: Sizes.size32,
                       fontWeight: FontWeight.w600,
                     ),
@@ -112,7 +110,6 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
       body: Container(
-        color: Colors.white,
         child: ListView(
           children: _lists.asMap().entries.map((entry) {
             int idx = entry.key;
@@ -171,7 +168,6 @@ class _SearchScreenState extends State<SearchScreen> {
                         list["followers"],
                         style: const TextStyle(
                           fontSize: Sizes.size14,
-                          color: Colors.black,
                         ),
                       ),
                     ],
