@@ -16,6 +16,7 @@ class TwitterApp extends StatelessWidget {
       title: 'Twitter Clone',
       themeMode: ThemeMode.system,
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         textTheme: Typography.blackMountainView,
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
@@ -23,12 +24,18 @@ class TwitterApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
         ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+        ),
       ),
       darkTheme: ThemeData(
         textTheme: Typography.whiteMountainView,
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
+        scaffoldBackgroundColor: Colors.grey.shade900,
         appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey.shade900,
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: Colors.grey.shade900,
         ),
       ),

@@ -8,6 +8,7 @@ import 'package:twitter_clone/home/contents/search/search_screen.dart';
 import 'package:twitter_clone/home/contents/widgets/write_modal.dart';
 import 'package:twitter_clone/home/widgets/nav_tab.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:twitter_clone/utils.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -40,13 +41,13 @@ class _HomeScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: _selectedIndex != 1 && _selectedIndex != 3 && _selectedIndex != 4
           ? AppBar(
               title: SvgPicture.asset(
                 'assets/icons/threads-icon.svg',
                 width: 40,
                 height: 40,
+                color: isDarkMode(context) ? Colors.white : Colors.black,
               ),
               leadingWidth: 100,
               elevation: 0,
@@ -77,7 +78,6 @@ class _HomeScreenState extends State<MainScreen> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: Sizes.size16,
