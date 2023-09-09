@@ -118,6 +118,7 @@ class _ActivityScreenState extends State<ActivityScreen>
           bottom: TabBar(
             controller: _tabController,
             indicatorSize: TabBarIndicatorSize.label,
+            labelColor: Colors.white,
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: isDarkMode ? Colors.grey.shade800 : Colors.black,

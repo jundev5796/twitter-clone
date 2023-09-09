@@ -5,16 +5,14 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white,
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    return const SizedBox(
       height: 50,
-      child: const TabBar(
+      child: TabBar(
         indicatorWeight: 0.8,
-        indicatorColor: Colors.black,
         labelPadding: EdgeInsets.only(
           bottom: Sizes.size4,
         ),
-        labelColor: Colors.black,
         tabs: [
           Text(
             "Threads",

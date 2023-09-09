@@ -29,7 +29,7 @@ class TwitterApp extends StatelessWidget {
         ),
         tabBarTheme: const TabBarTheme(
           unselectedLabelColor: Colors.black,
-          labelColor: Colors.white,
+          labelColor: Colors.black,
           indicatorColor: Colors.black,
         ),
       ),
