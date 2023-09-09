@@ -27,6 +27,11 @@ class TwitterApp extends StatelessWidget {
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.white,
         ),
+        tabBarTheme: const TabBarTheme(
+          unselectedLabelColor: Colors.black,
+          labelColor: Colors.white,
+          indicatorColor: Colors.black,
+        ),
       ),
       darkTheme: ThemeData(
         textTheme: Typography.whiteMountainView,
@@ -37,6 +42,11 @@ class TwitterApp extends StatelessWidget {
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: Colors.grey.shade900,
+        ),
+        tabBarTheme: const TabBarTheme(
+          unselectedLabelColor: Colors.white,
+          labelColor: Colors.white,
+          indicatorColor: Colors.white,
         ),
       ),
       home: const MainScreen(),

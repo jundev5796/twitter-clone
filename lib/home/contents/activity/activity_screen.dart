@@ -89,11 +89,11 @@ class _ActivityScreenState extends State<ActivityScreen>
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120.0),
         child: AppBar(
-          backgroundColor: Colors.white,
           elevation: 0,
           leading: const SizedBox.shrink(),
           titleSpacing: 0,
@@ -107,7 +107,6 @@ class _ActivityScreenState extends State<ActivityScreen>
                   Text(
                     "Activity",
                     style: TextStyle(
-                      color: Colors.black,
                       fontSize: 32, // Using a static value for demo
                       fontWeight: FontWeight.w600,
                     ),
@@ -121,15 +120,13 @@ class _ActivityScreenState extends State<ActivityScreen>
             indicatorSize: TabBarIndicatorSize.label,
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Colors.black,
+              color: isDarkMode ? Colors.grey.shade800 : Colors.black,
             ),
             isScrollable: true,
             labelStyle: const TextStyle(
               fontSize: 19,
               fontWeight: FontWeight.w500,
             ),
-            unselectedLabelColor: Colors.black,
-            labelColor: Colors.white,
             tabs: [
               for (int i = 0; i < tabs.length; i++)
                 SizedBox(
@@ -137,12 +134,9 @@ class _ActivityScreenState extends State<ActivityScreen>
                   child: Tab(
                     child: Text(
                       tabs[i],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 19,
                         fontWeight: FontWeight.w500,
-                        color: i == _selectedTabIndex
-                            ? Colors.white
-                            : Colors.black,
                       ),
                     ),
                   ),
@@ -178,8 +172,8 @@ class _ActivityScreenState extends State<ActivityScreen>
                                 ),
                               ),
                               Positioned(
-                                bottom: -2, // minor adjustment for alignment
-                                right: -2, // minor adjustment for alignment
+                                bottom: 0,
+                                right: 0,
                                 child: Container(
                                   decoration: BoxDecoration(
                                     border: Border.all(
@@ -190,11 +184,14 @@ class _ActivityScreenState extends State<ActivityScreen>
                                   child: CircleAvatar(
                                     radius: 10,
                                     backgroundColor: const Color(0xFFEA3378),
-                                    child: FaIcon(
-                                      _lists[index][
-                                          "iconData"], // use the icon data here
-                                      size: 10,
-                                      color: Colors.white,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(
+                                          2), // This will create the gap
+                                      child: FaIcon(
+                                        _lists[index]["iconData"],
+                                        size: 10, // adjust as needed
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -242,9 +239,11 @@ class _ActivityScreenState extends State<ActivityScreen>
                                       5.0), // Gap between the original subtitle and the new text
                               Text(
                                 _lists[index]["description"],
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: Sizes.size16,
-                                  color: Colors.black,
+                                  color: isDarkMode
+                                      ? Colors.grey.shade600
+                                      : Colors.black,
                                 ),
                               ),
                               Gaps.v10,
