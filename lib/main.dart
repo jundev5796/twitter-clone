@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitter_clone/home/main_screen.dart';
+import 'package:twitter_clone/router.dart';
 
 void main() {
   runApp(const TwitterApp());
@@ -11,7 +12,8 @@ class TwitterApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Twitter Clone',
       themeMode: ThemeMode.system,
@@ -52,7 +54,6 @@ class TwitterApp extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      home: const MainScreen(),
     );
   }
 }
