@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/activity/activity_screen.dart';
 import 'package:twitter_clone/home/contents/home_screen.dart';
@@ -21,6 +22,25 @@ class _HomeScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   void _onTap(int index) {
+    final GoRouter router = GoRouter.of(context);
+
+    switch (index) {
+      case 0:
+        router.go('/'); // Assuming '/' is the HomeScreen
+        break;
+      case 1:
+        router.go('/search');
+        break;
+      case 3:
+        router.go('/activity');
+        break;
+      case 4:
+        router.go('/profile');
+        break;
+      default:
+        break;
+    }
+
     setState(() {
       _selectedIndex = index;
     });

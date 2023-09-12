@@ -23,10 +23,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0.2,
-        backgroundColor: Colors.white,
+
         leading:
             const BackButton(color: Colors.black), // Custom back button color
         title: const Text(

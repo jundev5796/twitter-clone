@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:twitter_clone/home/main_screen.dart';
 import 'package:twitter_clone/router.dart';
 
 void main() {
