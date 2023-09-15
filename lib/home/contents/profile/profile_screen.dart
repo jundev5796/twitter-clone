@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
-import 'package:twitter_clone/home/contents/profile/settings_screen.dart';
+import 'package:twitter_clone/home/contents/settings/views/settings_screen.dart';
 import 'package:twitter_clone/home/contents/profile/widgets/persistent_tabbar.dart';
 import 'package:twitter_clone/home/contents/profile/widgets/tab_replies.dart';
 import 'package:twitter_clone/home/contents/profile/widgets/tab_threads.dart';

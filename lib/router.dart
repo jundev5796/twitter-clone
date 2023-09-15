@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:twitter_clone/home/contents/profile/privacy_screen.dart';
-import 'package:twitter_clone/home/contents/profile/settings_screen.dart';
+import 'package:twitter_clone/home/contents/settings/views/settings_screen.dart';
 import 'package:twitter_clone/home/main_screen.dart';
 
 final router = GoRouter(
