@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/profile/privacy_screen.dart';
+import 'package:twitter_clone/home/contents/settings/view_models/darkmode_config_vm.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routeName = "settings";
@@ -146,6 +148,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
+          ),
+          SwitchListTile.adaptive(
+            value: context.watch<DarkModeConfigViewModel>().darkmode,
+            onChanged: (value) =>
+                context.read<DarkModeConfigViewModel>().enableDarkMode(value),
+            title: const Text("Dark Mode"),
+            subtitle: const Text("Enable Dark Mode"),
           ),
           const Divider(),
           ListTile(
