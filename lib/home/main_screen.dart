@@ -38,25 +38,6 @@ class _HomeScreenState extends State<MainScreen> {
 
   void _onTap(int index) {
     context.go("/${_tabs[index]}");
-    // final GoRouter router = GoRouter.of(context);
-
-    // switch (index) {
-    //   case 0:
-    //     router.go('/'); // Assuming '/' is the HomeScreen
-    //     break;
-    //   case 1:
-    //     router.go('/search');
-    //     break;
-    //   case 3:
-    //     router.go('/activity');
-    //     break;
-    //   case 4:
-    //     router.go('/profile');
-    //     break;
-    //   default:
-    //     break;
-    // }
-
     setState(() {
       _selectedIndex = index;
     });

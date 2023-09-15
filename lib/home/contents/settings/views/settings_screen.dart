@@ -1,35 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:twitter_clone/constants/sizes.dart';
-import 'package:twitter_clone/home/contents/profile/privacy_screen.dart';
 import 'package:twitter_clone/home/contents/settings/view_models/darkmode_config_vm.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerWidget {
   static const String routeName = "settings";
   static const String routeURL = "/settings";
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  void _onPrivacyTap() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const PrivacyScreen(),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.2,
-
         leading:
             const BackButton(color: Colors.black), // Custom back button color
         title: const Text(
@@ -83,7 +68,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               horizontal: Sizes.size8,
             ),
             child: GestureDetector(
-              onTap: _onPrivacyTap,
+              onTap: () {},
               child: const ListTile(
                 leading: FaIcon(
                   FontAwesomeIcons.lock,
@@ -150,9 +135,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           SwitchListTile.adaptive(
-            value: context.watch<DarkModeConfigViewModel>().darkmode,
+            value: ref.watch(darkmodeConfigProvider).darkmode,
             onChanged: (value) =>
-                context.read<DarkModeConfigViewModel>().enableDarkMode(value),
+                ref.read(darkmodeConfigProvider.notifier).enableDarkMode(value),
             title: const Text("Dark Mode"),
             subtitle: const Text("Enable Dark Mode"),
           ),
@@ -191,3 +176,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 }
+
+// void _onPrivacyTap() {
+//     Navigator.of(context).push(
+//       MaterialPageRoute(
+//         builder: (context) => const PrivacyScreen(),
+//       ),
+//     );
+//   }

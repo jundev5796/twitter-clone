@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:twitter_clone/home/contents/settings/repos/darkmode_config_repo.dart';
 import 'package:twitter_clone/home/contents/settings/view_models/darkmode_config_vm.dart';
@@ -18,10 +18,10 @@ void main() async {
   final repository = DarkModeConfigRepository(preferences);
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => DarkModeConfigViewModel(repository),
+    ProviderScope(
+      overrides: [
+        darkmodeConfigProvider.overrideWith(
+          () => DarkModeConfigViewModel(repository),
         ),
       ],
       child: const TwitterApp(),
@@ -29,17 +29,17 @@ void main() async {
   );
 }
 
-class TwitterApp extends StatelessWidget {
+class TwitterApp extends ConsumerWidget {
   const TwitterApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Twitter Clone',
-      themeMode: context.watch<DarkModeConfigViewModel>().darkmode
+      themeMode: ref.watch(darkmodeConfigProvider).darkmode
           ? ThemeMode.dark
           : ThemeMode.light,
       theme: ThemeData(
@@ -82,3 +82,6 @@ class TwitterApp extends StatelessWidget {
     );
   }
 }
+//   @override
+//   ConsumerState<TwitterApp> createState() => _TwitterAppState();
+// }
