@@ -4,6 +4,8 @@ import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
 class PrivacyScreen extends StatefulWidget {
+  static const String routeName = "privacy";
+  static const String routeURL = "/settings/privacy";
   const PrivacyScreen({Key? key}) : super(key: key);
 
   @override

@@ -5,6 +5,8 @@ import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/profile/privacy_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
+  static const String routeName = "settings";
+  static const String routeURL = "/settings";
   const SettingsScreen({super.key});
 
   @override

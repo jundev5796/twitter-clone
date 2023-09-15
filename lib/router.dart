@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:twitter_clone/home/contents/profile/privacy_screen.dart';
+import 'package:twitter_clone/home/contents/profile/settings_screen.dart';
 import 'package:twitter_clone/home/main_screen.dart';
 
 final router = GoRouter(
@@ -11,31 +13,17 @@ final router = GoRouter(
         final tab = state.pathParameters["tab"]!;
         return MainScreen(tab: tab);
       },
-    )
-    // GoRoute(
-    //   path: "/",
-    //   builder: (context, state) => const MainScreen(),
-    // ),
-    // GoRoute(
-    //   path: "/search",
-    //   builder: (context, state) => const SearchScreen(),
-    // ),
-    // GoRoute(
-    //   path: "/activity",
-    //   builder: (context, state) => const ActivityScreen(),
-    // ),
-    // GoRoute(
-    //   path: "/profile",
-    //   builder: (context, state) => const ProfileScreen(),
-    // ),
-    // GoRoute(
-    //   path: "/settings",
-    //   builder: (context, state) => const SettingsScreen(),
-    // ),
-    // GoRoute(
-    //   path: "/settings/privacy",
-    //   builder: (context, state) => const PrivacyScreen(),
-    // ),
+    ),
+    GoRoute(
+      path: SettingsScreen.routeURL,
+      name: SettingsScreen.routeName,
+      builder: (context, state) => const SettingsScreen(),
+    ),
+    GoRoute(
+      path: PrivacyScreen.routeURL,
+      name: PrivacyScreen.routeName,
+      builder: (context, state) => const PrivacyScreen(),
+    ),
 
     // GoRoute(
     //   path: "/",
