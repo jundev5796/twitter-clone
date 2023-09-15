@@ -39,7 +39,9 @@ class TwitterApp extends StatelessWidget {
       routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Twitter Clone',
-      themeMode: ThemeMode.system,
+      themeMode: context.watch<DarkModeConfigViewModel>().darkmode
+          ? ThemeMode.dark
+          : ThemeMode.light,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: Typography.blackMountainView,
