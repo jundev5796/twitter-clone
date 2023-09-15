@@ -43,7 +43,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const InterestsScreenTwo(),
+        builder: (context) => const InterestsScreenTwo(tab: "yourValue"),
       ),
     );
   }

@@ -42,7 +42,11 @@ const entertainments = [
 ];
 
 class InterestsScreenTwo extends StatefulWidget {
-  const InterestsScreenTwo({super.key});
+  final String tab;
+  const InterestsScreenTwo({
+    super.key,
+    required this.tab,
+  });
 
   @override
   State<InterestsScreenTwo> createState() => _InterestsScreenTwoState();
@@ -69,7 +73,7 @@ class _InterestsScreenTwoState extends State<InterestsScreenTwo> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const MainScreen(),
+        builder: (context) => const MainScreen(tab: "home"),
       ),
     );
   }

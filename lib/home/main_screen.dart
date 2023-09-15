@@ -12,34 +12,50 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:twitter_clone/utils.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  static const String routeName = "mainScreen";
+
+  final String tab;
+
+  const MainScreen({
+    super.key,
+    required this.tab,
+  });
 
   @override
   State<MainScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
+  final List<String> _tabs = [
+    "home",
+    "search",
+    "xxxx",
+    "activity",
+    "profile",
+  ];
+
+  late int _selectedIndex = _tabs.indexOf(widget.tab);
 
   void _onTap(int index) {
-    final GoRouter router = GoRouter.of(context);
+    context.go("/${_tabs[index]}");
+    // final GoRouter router = GoRouter.of(context);
 
-    switch (index) {
-      case 0:
-        router.go('/'); // Assuming '/' is the HomeScreen
-        break;
-      case 1:
-        router.go('/search');
-        break;
-      case 3:
-        router.go('/activity');
-        break;
-      case 4:
-        router.go('/profile');
-        break;
-      default:
-        break;
-    }
+    // switch (index) {
+    //   case 0:
+    //     router.go('/'); // Assuming '/' is the HomeScreen
+    //     break;
+    //   case 1:
+    //     router.go('/search');
+    //     break;
+    //   case 3:
+    //     router.go('/activity');
+    //     break;
+    //   case 4:
+    //     router.go('/profile');
+    //     break;
+    //   default:
+    //     break;
+    // }
 
     setState(() {
       _selectedIndex = index;
