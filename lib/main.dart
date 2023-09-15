@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:twitter_clone/home/contents/settings/repos/darkmode_config_repo.dart';
+import 'package:twitter_clone/home/contents/settings/view_models/darkmode_config_vm.dart';
 import 'package:twitter_clone/router.dart';
 
-void main() {
-  runApp(const TwitterApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+    ],
+  );
+
+  final preferences = await SharedPreferences.getInstance();
+  final repository = DarkModeConfigRepository(preferences);
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => DarkModeConfigViewModel(repository),
+        ),
+      ],
+      child: const TwitterApp(),
+    ),
+  );
 }
 
 class TwitterApp extends StatelessWidget {
