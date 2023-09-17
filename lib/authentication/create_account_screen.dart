@@ -1,27 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:twitter_clone/authentication/login_screen.dart';
+import 'package:twitter_clone/authentication/view_models/signup_view_model.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
-class CreateAccount extends StatefulWidget {
+class CreateAccount extends ConsumerStatefulWidget {
   static const String routeName = "create_account";
   static const String routeURL = "/create_account";
   const CreateAccount({super.key});
 
   @override
-  State<CreateAccount> createState() => _CreateAccountState();
+  ConsumerState<CreateAccount> createState() => _CreateAccountState();
 }
 
-class _CreateAccountState extends State<CreateAccount> {
+class _CreateAccountState extends ConsumerState<CreateAccount> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  String _email = "";
+  String _password = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController.addListener(() {
+      setState(() {
+        _email = _emailController.text;
+      });
+    });
+    _passwordController.addListener(() {
+      setState(() {
+        _password = _passwordController.text;
+      });
+    });
+  }
+
+  void _onSignUpTap() async {
+    print("SignUp Button was tapped!");
+    ref.read(signUpForm.notifier).state = {
+      "email": _email,
+      "password": _password,
+    };
+    await ref.read(signUpProvider.notifier).signUp();
+  }
+
   void _onLoginTap(BuildContext context) async {
     context.pushNamed(LoginScreen.routeName);
   }
 
   void _onScaffoldTap() {
     FocusScope.of(context).unfocus();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -70,15 +109,16 @@ class _CreateAccountState extends State<CreateAccount> {
                         ),
                         borderRadius: BorderRadius.circular(Sizes.size6),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
                           vertical: Sizes.size10,
                           horizontal: Sizes.size16,
                         ),
                         child: TextField(
+                          controller: _emailController,
                           autocorrect: false,
                           keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "Mobile number or email",
                             hintStyle: TextStyle(
                               color: Colors.grey,
@@ -99,15 +139,16 @@ class _CreateAccountState extends State<CreateAccount> {
                         ),
                         borderRadius: BorderRadius.circular(Sizes.size6),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
                           vertical: Sizes.size10,
                           horizontal: Sizes.size16,
                         ),
                         child: TextField(
+                          controller: _passwordController,
                           autocorrect: false,
                           keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "Password",
                             hintStyle: TextStyle(
                               color: Colors.grey,
@@ -121,7 +162,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     ),
                     Gaps.v16,
                     TextButton(
-                      onPressed: () {},
+                      onPressed: _onSignUpTap,
                       style: TextButton.styleFrom(
                         foregroundColor: const Color(0xFF0c64E0),
                         backgroundColor: const Color(0xFF0c64E0),
