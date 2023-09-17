@@ -43,7 +43,7 @@ class TwitterApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
-      routerConfig: router,
+      routerConfig: ref.watch(routerProvider),
       debugShowCheckedModeBanner: false,
       title: 'Twitter Clone',
       themeMode: ref.watch(darkmodeConfigProvider).darkmode
