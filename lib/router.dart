@@ -2,13 +2,24 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:twitter_clone/authentication/create_account_screen.dart';
 import 'package:twitter_clone/authentication/login_screen.dart';
+import 'package:twitter_clone/authentication/repos/authentication_repo.dart';
 import 'package:twitter_clone/home/contents/profile/privacy_screen.dart';
 import 'package:twitter_clone/home/contents/settings/views/settings_screen.dart';
 import 'package:twitter_clone/home/main_screen.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
-    initialLocation: CreateAccount.routeURL,
+    initialLocation: "/home",
+    redirect: (context, state) {
+      final isLoggedIn = ref.read(authRepo).isLoggedIn;
+      if (!isLoggedIn) {
+        if (state.matchedLocation != CreateAccount.routeURL &&
+            state.matchedLocation != LoginScreen.routeURL) {
+          return CreateAccount.routeURL;
+        }
+      }
+      return null;
+    },
     routes: [
       GoRoute(
         path: CreateAccount.routeURL,
