@@ -1,20 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:twitter_clone/authentication/view_models/login_view_model.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   static const String routeName = "login";
   static const String routeURL = "/login";
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Map<String, String> formData = {};
+
+  void _onSubmitTap() {
+    ref.read(loginProvider.notifier).login(
+          _emailController.text,
+          _passwordController.text,
+          context,
+        );
+  }
+
+  // void _onSubmitTap() {
+  //   ref.read(loginProvider.notifier).login(
+  //         formData["email"]!,
+  //         formData["password"]!,
+  //         context,
+  //       );
+  // }
+
   void _onSignUpTap(BuildContext context) {
     context.pop();
   }
@@ -69,15 +92,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         borderRadius: BorderRadius.circular(Sizes.size6),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
                           vertical: Sizes.size10,
                           horizontal: Sizes.size16,
                         ),
                         child: TextField(
+                          controller: _emailController,
                           autocorrect: false,
                           keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "Mobile number or email",
                             hintStyle: TextStyle(
                               color: Colors.grey,
@@ -98,15 +122,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         borderRadius: BorderRadius.circular(Sizes.size6),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
                           vertical: Sizes.size10,
                           horizontal: Sizes.size16,
                         ),
                         child: TextField(
+                          controller: _passwordController,
                           autocorrect: false,
                           keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "Password",
                             hintStyle: TextStyle(
                               color: Colors.grey,
@@ -120,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Gaps.v16,
                     TextButton(
-                      onPressed: () {},
+                      onPressed: _onSubmitTap,
                       style: TextButton.styleFrom(
                         foregroundColor: const Color(0xFF0c64E0),
                         backgroundColor: const Color(0xFF0c64E0),
