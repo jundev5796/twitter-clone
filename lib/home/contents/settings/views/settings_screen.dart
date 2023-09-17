@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:twitter_clone/authentication/repos/authentication_repo.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/settings/view_models/darkmode_config_vm.dart';
 
@@ -162,7 +163,7 @@ class SettingsScreen extends ConsumerWidget {
                       child: const Text("No"),
                     ),
                     CupertinoDialogAction(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => ref.read(authRepo).signOut(),
                       isDestructiveAction: true,
                       child: const Text("Yes"),
                     ),

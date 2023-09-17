@@ -8,6 +8,7 @@ import 'package:twitter_clone/home/contents/settings/views/settings_screen.dart'
 import 'package:twitter_clone/home/main_screen.dart';
 
 final routerProvider = Provider((ref) {
+  ref.watch(authState);
   return GoRouter(
     initialLocation: "/home",
     redirect: (context, state) {
