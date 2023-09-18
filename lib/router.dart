@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:twitter_clone/authentication/create_account_screen.dart';
 import 'package:twitter_clone/authentication/login_screen.dart';
 import 'package:twitter_clone/authentication/repos/authentication_repo.dart';
+import 'package:twitter_clone/camera/camera_screen.dart';
 import 'package:twitter_clone/home/contents/profile/privacy_screen.dart';
 import 'package:twitter_clone/home/contents/settings/views/settings_screen.dart';
 import 'package:twitter_clone/home/main_screen.dart';
@@ -50,11 +51,11 @@ final routerProvider = Provider((ref) {
         name: PrivacyScreen.routeName,
         builder: (context, state) => const PrivacyScreen(),
       ),
-
-      // GoRoute(
-      //   path: "/",
-      //   builder: (context, state) => const CameraScreen(),
-      // )
+      GoRoute(
+        path: CameraScreen.routeURL,
+        name: CameraScreen.routeName,
+        builder: (context, state) => const CameraScreen(),
+      )
     ],
   );
 });

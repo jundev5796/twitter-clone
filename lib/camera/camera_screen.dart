@@ -8,6 +8,8 @@ import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 
 class CameraScreen extends StatefulWidget {
+  static const String routeName = "camera";
+  static const String routeURL = "/camera";
   const CameraScreen({super.key});
 
   @override
