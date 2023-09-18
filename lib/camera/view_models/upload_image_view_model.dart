@@ -32,3 +32,7 @@ class UploadImageViewModel extends AsyncNotifier<void> {
     });
   }
 }
+
+final uploadImageProvider = AsyncNotifierProvider<UploadImageViewModel, void>(
+  () => UploadImageViewModel(),
+);
