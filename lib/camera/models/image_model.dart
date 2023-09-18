@@ -1,6 +1,12 @@
 class ImageModel {
-  String title;
+  String fileUrl;
+  // String title;
   // String description;
-  // String fileUrl;
-  ImageModel({required this.title});
+  ImageModel({required this.fileUrl});
+
+  Map<String, dynamic> toJson() {
+    return {
+      "fileUrl": fileUrl,
+    };
+  }
 }

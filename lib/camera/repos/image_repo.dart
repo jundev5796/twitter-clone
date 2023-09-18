@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:twitter_clone/camera/models/image_model.dart';
 
 class ImageRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -14,6 +15,10 @@ class ImageRepository {
           "/images/$uid/${DateTime.now().millisecondsSinceEpoch.toString()}",
         );
     return fileRef.putFile(image);
+  }
+
+  Future<void> saveImage(ImageModel data) async {
+    await _db.collection("images").add(data.toJson());
   }
 }
 

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/authentication/repos/authentication_repo.dart';
+import 'package:twitter_clone/camera/models/image_model.dart';
 import 'package:twitter_clone/camera/repos/image_repo.dart';
 
 class UploadImageViewModel extends AsyncNotifier<void> {
@@ -22,7 +23,11 @@ class UploadImageViewModel extends AsyncNotifier<void> {
         user!.uid,
       );
       if (task.metadata != null) {
-        await _repository.saveImage();
+        await _repository.saveImage(
+          ImageModel(
+            fileUrl: await task.ref.getDownloadURL(),
+          ),
+        );
       }
     });
   }
