@@ -6,6 +6,7 @@ import 'package:twitter_clone/camera/camera_screen.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/users/view_models/users_view_model.dart';
+import 'package:twitter_clone/home/contents/widgets/image_attach.dart';
 
 class WriteModal extends ConsumerStatefulWidget {
   const WriteModal({super.key});
@@ -33,19 +34,19 @@ class _WriteModalState extends ConsumerState<WriteModal> {
     });
   }
 
-  void _onAttachTap() async {
-    final imagePath = await Navigator.of(context).push(
-      MaterialPageRoute<String>(
-        builder: (context) => const CameraScreen(),
-      ),
-    );
+  // void _onAttachTap() async {
+  //   final imagePath = await Navigator.of(context).push(
+  //     MaterialPageRoute<String>(
+  //       builder: (context) => const CameraScreen(),
+  //     ),
+  //   );
 
-    if (imagePath != null && imagePath.isNotEmpty) {
-      setState(() {
-        _takenImagePath = imagePath;
-      });
-    }
-  }
+  //   if (imagePath != null && imagePath.isNotEmpty) {
+  //     setState(() {
+  //       _takenImagePath = imagePath;
+  //     });
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -153,13 +154,7 @@ class _WriteModalState extends ConsumerState<WriteModal> {
                                 ),
                               ),
                               Gaps.v8,
-                              GestureDetector(
-                                onTap: _onAttachTap,
-                                child: FaIcon(
-                                  FontAwesomeIcons.paperclip,
-                                  color: Colors.grey.shade400,
-                                ),
-                              ),
+                              const AttachImage(),
                               // Check if the image path is not null and display the image.
                               if (_takenImagePath != null) ...[
                                 Gaps.v8,
