@@ -19,6 +19,12 @@ class UserProfileModel {
         bio = "",
         uid = "";
 
+  UserProfileModel.fromJson(Map<String, dynamic> json)
+      : username = json["username"],
+        nickname = json["nickname"],
+        bio = json["bio"],
+        uid = json["uid"];
+
   Map<String, String> toJson() {
     return {
       "username": username,
