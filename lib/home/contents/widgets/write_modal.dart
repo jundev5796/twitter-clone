@@ -2,11 +2,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:twitter_clone/camera/camera_screen.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
 import 'package:twitter_clone/home/contents/users/view_models/users_view_model.dart';
-import 'package:twitter_clone/home/contents/widgets/image_attach.dart';
 
 class WriteModal extends ConsumerStatefulWidget {
   const WriteModal({super.key});
@@ -18,7 +17,7 @@ class WriteModal extends ConsumerStatefulWidget {
 class _WriteModalState extends ConsumerState<WriteModal> {
   final _controller = TextEditingController();
   bool _isTextFieldEmpty = true;
-  String? _takenImagePath;
+  final List<String> _selectedImagePaths = [];
 
   void _onCancelTap() {
     Navigator.of(context).pop();
@@ -34,19 +33,24 @@ class _WriteModalState extends ConsumerState<WriteModal> {
     });
   }
 
-  // void _onAttachTap() async {
-  //   final imagePath = await Navigator.of(context).push(
-  //     MaterialPageRoute<String>(
-  //       builder: (context) => const CameraScreen(),
-  //     ),
-  //   );
+  void _onAttachTap() async {
+    final imagePicker = ImagePicker();
+    final pickedImages = await imagePicker.pickMultiImage(
+      imageQuality: 40,
+    );
 
-  //   if (imagePath != null && imagePath.isNotEmpty) {
-  //     setState(() {
-  //       _takenImagePath = imagePath;
-  //     });
-  //   }
-  // }
+    if (pickedImages.isNotEmpty) {
+      setState(() {
+        _selectedImagePaths.addAll(pickedImages.map((image) => image.path));
+      });
+    }
+  }
+
+  void _onDeleteImage(int index) {
+    setState(() {
+      _selectedImagePaths.removeAt(index);
+    });
+  }
 
   @override
   void dispose() {
@@ -154,17 +158,46 @@ class _WriteModalState extends ConsumerState<WriteModal> {
                                 ),
                               ),
                               Gaps.v8,
-                              const AttachImage(),
-                              // Check if the image path is not null and display the image.
-                              if (_takenImagePath != null) ...[
-                                Gaps.v8,
-                                Image.file(
-                                  File(_takenImagePath!),
-                                  // You can adjust the width and height as needed
-                                  height: 300,
-                                  fit: BoxFit.contain,
-                                )
-                              ],
+                              GestureDetector(
+                                onTap: _onAttachTap,
+                                child: FaIcon(
+                                  FontAwesomeIcons.paperclip,
+                                  color: Colors.grey.shade400,
+                                ),
+                              ),
+                              Gaps.v16,
+                              Wrap(
+                                spacing: 8.0,
+                                runSpacing: 8.0,
+                                children:
+                                    _selectedImagePaths.asMap().entries.map(
+                                  (entry) {
+                                    final int index = entry.key;
+                                    final String imagePath = entry.value;
+                                    return Stack(
+                                      alignment: Alignment.topRight,
+                                      children: [
+                                        Image.file(
+                                          File(imagePath),
+                                          height:
+                                              100, // Adjust the size as needed
+                                          width:
+                                              100, // Adjust the size as needed
+                                          fit: BoxFit.cover,
+                                        ),
+                                        GestureDetector(
+                                          onTap: () => _onDeleteImage(index),
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: Colors.white,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ).toList(),
+                              ),
                             ],
                           ),
                         ),

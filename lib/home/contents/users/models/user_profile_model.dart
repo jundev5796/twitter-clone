@@ -3,6 +3,7 @@ class UserProfileModel {
   final String nickname;
   final String bio;
   final String uid;
+  final bool hasAvatar;
   // final bool hasAvatar;
 
   UserProfileModel({
@@ -10,6 +11,7 @@ class UserProfileModel {
     required this.nickname,
     required this.bio,
     required this.uid,
+    required this.hasAvatar,
     // required this.hasAvatar,
   });
 
@@ -17,13 +19,15 @@ class UserProfileModel {
       : username = "",
         nickname = "",
         bio = "",
-        uid = "";
+        uid = "",
+        hasAvatar = false;
 
   UserProfileModel.fromJson(Map<String, dynamic> json)
       : username = json["username"],
         nickname = json["nickname"],
         bio = json["bio"],
-        uid = json["uid"];
+        uid = json["uid"],
+        hasAvatar = json["hasAvatar"];
 
   Map<String, String> toJson() {
     return {
