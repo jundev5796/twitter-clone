@@ -78,6 +78,7 @@ flutter:
   assets:
     - assets/icons/threads-icon.svg
     - assets/icons/threads-logo.svg
+    - assets/icons/waterfall-ios.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

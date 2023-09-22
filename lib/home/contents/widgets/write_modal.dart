@@ -5,7 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
+import 'package:twitter_clone/home/contents/users/view_models/image_post_view_model.dart';
 import 'package:twitter_clone/home/contents/users/view_models/users_view_model.dart';
+import 'package:twitter_clone/home/contents/widgets/new_post_screen.dart';
 
 class WriteModal extends ConsumerStatefulWidget {
   const WriteModal({super.key});
@@ -18,6 +20,8 @@ class _WriteModalState extends ConsumerState<WriteModal> {
   final _controller = TextEditingController();
   bool _isTextFieldEmpty = true;
   final List<String> _selectedImagePaths = [];
+  String _enteredText = "";
+  bool _isSaving = false;
 
   void _onCancelTap() {
     Navigator.of(context).pop();
@@ -50,6 +54,34 @@ class _WriteModalState extends ConsumerState<WriteModal> {
     setState(() {
       _selectedImagePaths.removeAt(index);
     });
+  }
+
+  void _saveEnteredTextAndImages() async {
+    if (_isSaving) {
+      // If the save operation is already in progress, return to prevent multiple calls
+      return;
+    }
+
+    _isSaving =
+        true; // Set the flag to indicate that the save operation is in progress
+
+    final imagePostViewModel = ref.read(uploadImageProvider.notifier);
+
+    // Check if there is entered text and at least one image is selected
+    if (_enteredText.isNotEmpty && _selectedImagePaths.isNotEmpty) {
+      // Call the uploadImages function to upload all selected images
+      await imagePostViewModel.uploadImages(_selectedImagePaths);
+
+      // Save entered text and other details
+      imagePostViewModel.saveEnteredText(_enteredText);
+    }
+
+    _isSaving = false; // Reset the flag after the save operation is complete
+
+    // Navigate to the ViewPostScreen after saving
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => const ViewPostScreen(),
+    ));
   }
 
   @override
@@ -152,6 +184,12 @@ class _WriteModalState extends ConsumerState<WriteModal> {
                               TextField(
                                 controller: _controller,
                                 maxLines: null,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _enteredText =
+                                        value; // Update the entered text
+                                  });
+                                },
                                 decoration: const InputDecoration(
                                   hintText: "Start a thread...",
                                   border: InputBorder.none,
@@ -229,16 +267,21 @@ class _WriteModalState extends ConsumerState<WriteModal> {
                               fontSize: 16,
                             ),
                           ),
-                          Text(
-                            "Post",
-                            style: TextStyle(
-                              color: _isTextFieldEmpty
-                                  ? Colors.blue.shade200
-                                  : Colors.blue,
-                              fontSize: 19,
-                              fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onTap: _isTextFieldEmpty
+                                ? null
+                                : _saveEnteredTextAndImages, // Call the function here
+                            child: Text(
+                              "Post",
+                              style: TextStyle(
+                                color: _isTextFieldEmpty
+                                    ? Colors.blue.shade200
+                                    : Colors.blue,
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
+                          )
                         ],
                       ),
                     ),

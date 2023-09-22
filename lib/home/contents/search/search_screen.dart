@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:twitter_clone/constants/gaps.dart';
 import 'package:twitter_clone/constants/sizes.dart';
+import 'package:twitter_clone/home/contents/widgets/new_post_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -12,6 +13,8 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  final TextEditingController _searchController = TextEditingController();
+
   List<bool> followed = [];
 
   final List<Map<String, dynamic>> _lists = [
@@ -87,22 +90,38 @@ class _SearchScreenState extends State<SearchScreen> {
           elevation: 0,
           leading: const SizedBox.shrink(),
           titleSpacing: 0,
-          flexibleSpace: const SafeArea(
+          flexibleSpace: SafeArea(
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
+                  const Text(
                     "Search",
                     style: TextStyle(
                       fontSize: Sizes.size32,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(height: 8),
-                  CupertinoSearchTextField(),
+                  const SizedBox(height: 8),
+                  CupertinoSearchTextField(
+                      controller: _searchController,
+                      onSubmitted: (value) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const ViewPostScreen()),
+                        );
+                      }
+                      // onSubmitted: (value) {
+                      //   if (value == "This challenge was hard...") {
+                      //     Navigator.of(context).push(
+                      //       MaterialPageRoute(
+                      //           builder: (context) => const ViewPostScreen()),
+                      //     );
+                      //   }
+                      // },
+                      ),
                 ],
               ),
             ),
